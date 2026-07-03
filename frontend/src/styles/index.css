@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-obsidian text-on-surface font-body antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display tracking-wide;
+  }
+}
+
+@layer utilities {
+  .label-caps {
+    @apply font-mono text-[11px] uppercase tracking-[0.08em] text-on-surface-variant;
+  }
+  .data-num {
+    @apply font-mono tabular-nums;
+  }
+}
