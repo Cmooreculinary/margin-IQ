@@ -34,4 +34,7 @@ COLLECTIONS = [
     "recommendations",
     "approval_log",
     "seasons",
+    "baselines",
+    "validation_runs",
+    "engagement_plans",
 ]

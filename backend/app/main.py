@@ -10,7 +10,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.config import settings
-from app.routers import dashboard, exports, ingestion, items, locations, recommendations, validation
+from app.routers import dashboard, engagement, exports, ingestion, items, locations, recommendations, validation
 
 # Built frontend (copied in by the production Docker image). When present, this
 # app serves the SPA too, so API + portal run as a single same-origin service.
@@ -21,13 +21,15 @@ STATIC_DIR = Path(os.environ.get("STATIC_DIR", "static"))
 async def lifespan(app: FastAPI):
     if settings.seed_demo:
         from app.db import get_database
-        from app.seed.rook_and_roast import seed
+        from app.seed.snakes_and_lattes import TENANT_SLUG, seed
 
         db = get_database()
-        # Idempotent: only seed a fresh database, never touch a live tenant.
-        if await db.tenants.count_documents({}) == 0:
+        # Idempotent: add the demo tenant only when it is missing. This never
+        # mutates an existing tenant and still lets an existing demo database get
+        # the Snakes & Lattes account after deployment.
+        if await db.tenants.count_documents({"slug": TENANT_SLUG}) == 0:
             result = await seed(db)
-            print(f"Seeded Rook & Roast demo tenant (token: {result['api_token']})", flush=True)
+            print(f"Seeded Snakes & Lattes demo tenant (token: {result['api_token']})", flush=True)
     yield
 
 
@@ -53,6 +55,7 @@ app.include_router(recommendations.router)
 app.include_router(dashboard.router)
 app.include_router(validation.router)
 app.include_router(exports.router)
+app.include_router(engagement.router)
 
 
 @app.get("/health")

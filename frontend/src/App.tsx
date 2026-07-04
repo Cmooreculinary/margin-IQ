@@ -5,6 +5,7 @@ import { LocationDashboardPage } from "./pages/LocationDashboard";
 import { ItemAnalysisTablePage } from "./pages/ItemAnalysisTable";
 import { ApprovalQueuePage } from "./pages/ApprovalQueue";
 import { ValidationPage } from "./pages/Validation";
+import { EngagementPlanPage } from "./pages/EngagementPlan";
 
 export function App() {
   return (
@@ -17,6 +18,7 @@ export function App() {
           <Route path="/items" element={<ItemAnalysisTablePage />} />
           <Route path="/approvals" element={<ApprovalQueuePage />} />
           <Route path="/validation" element={<ValidationPage />} />
+          <Route path="/engagement" element={<EngagementPlanPage />} />
         </Routes>
       </main>
     </div>

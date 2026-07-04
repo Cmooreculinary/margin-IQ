@@ -106,7 +106,11 @@ async def run_reconciliation(
 ):
     db = get_database()
     excluded_items = await db.menu_items.find(
-        {"tenant_id": tenant["_id"], "location_id": location_id, "is_excluded": True}
+        {
+            "tenant_id": tenant["_id"],
+            "is_excluded": True,
+            "$or": [{"location_id": location_id}, {"location_id": None}],
+        }
     ).to_list(length=None)
     excluded_plus = {i["plu"] for i in excluded_items}
 

@@ -24,16 +24,17 @@ without rework:
 | 5 — Validation engine, P&L bridge, offset % | done — immutable signed baseline lock, post-period measurement adjusted for documented seasonality + food inflation, exactly-reconciling P&L bridge, item-level bridge, Offset % metric |
 | 6 — Franchise mode, monitoring tiers | not started — `monitoring_tier` already modeled on `tenants`; franchisor/franchisee hierarchy not implemented |
 
-**Demo dataset:** *Rook & Roast*, a fictional 3-location board-game cafe
-(Chicago, Tempe, Tucson), ~$5M combined annualized F&B revenue, Nov–Apr peak
-/ May–Oct slow seasons, a Game Table Cover Fee PLU excluded from prime-cost
-math, and **Loaded Nachos** as the deliberate food-cost mirage (77% food-cost
-margin, ~50% prime-cost margin once labor is allocated in) — so the Prime
-Cost story demos itself the moment you look at the item table. The seed also
-includes a Q2 2026 post-implementation period (five price recs "implemented"
-at +$0.25 realized price, summer-slow volumes, small elasticity dip) so the
-Validation page demos end-to-end: lock the Q1 baseline, measure Q2, and watch
-the P&L bridge and Offset % populate from realistic data.
+**Demo dataset:** *Snakes & Lattes - US*, a three-location full-scale test
+account built from the July 2026 proposal scope: Chicago, Tempe, and Tucson,
+~$5M combined annualized F&B revenue, Tempe summer-slow / Nov-Apr peak
+seasonality, a $6 Game Table Cover Fee PLU excluded from prime-cost math, and
+deliberate labor-heavy food-cost mirage items so the Prime Cost story demos
+itself the moment you look at the item table. The seed also includes an
+Oct-Dec 2026 post-implementation period with selected price moves realized, so
+the Validation page demos end-to-end: lock the Apr-Jun baseline, measure the
+post period, and watch the P&L bridge and Offset % populate from realistic
+data. The portal includes an Engagement Plan page with the timeline, data
+requirements, deliverables, terms, and franchise-system test angle.
 
 ## Architecture
 
@@ -96,7 +97,7 @@ it from the FastAPI process (same origin — no CORS, one free instance).
    once merged). Render reads `render.yaml` and prompts for `MONGO_URL` —
    paste the Atlas string.
 3. **Demo data** — `SEED_DEMO=true` (the blueprint default) seeds the
-   Rook & Roast demo tenant on first boot *only if the database is empty*.
+   Snakes & Lattes US demo tenant on first boot when that tenant is missing.
    The deployed portal works immediately with the demo token. Set it to
    `false` for a real engagement.
 4. Health check is `/health`; the portal is at `/`, interactive API docs at
@@ -123,8 +124,8 @@ pip install -r requirements.txt
 cp .env.example .env   # point MONGO_URL at a running Mongo instance
 uvicorn app.main:app --reload
 
-# Seed the Rook & Roast demo tenant
-python -m app.seed.rook_and_roast
+# Seed the Snakes & Lattes demo tenant
+python -m app.seed.snakes_and_lattes
 # prints the tenant's API token -- use it as: Authorization: Bearer <token>
 
 # Frontend
@@ -134,7 +135,7 @@ npm run dev
 ```
 
 The frontend defaults to the seed script's demo token
-(`rook-roast-demo-token`) via `src/lib/api.ts` so it works out of the box
+(`snakes-lattes-demo-token`) via `src/lib/api.ts` so it works out of the box
 against a freshly seeded backend.
 
 ### Tests

@@ -3,10 +3,12 @@
 // Render build sets VITE_API_BASE="" .
 const BASE_URL = import.meta.env.VITE_API_BASE ?? "/api";
 const TOKEN_STORAGE_KEY = "margin_iq_tenant_token";
-export const DEMO_TENANT_TOKEN = "rook-roast-demo-token";
+export const DEMO_TENANT_TOKEN = "snakes-lattes-demo-token";
+const LEGACY_DEMO_TOKENS = new Set(["rook-roast-demo-token"]);
 
 export function getTenantToken(): string {
-  return localStorage.getItem(TOKEN_STORAGE_KEY) || DEMO_TENANT_TOKEN;
+  const stored = localStorage.getItem(TOKEN_STORAGE_KEY);
+  return stored && !LEGACY_DEMO_TOKENS.has(stored) ? stored : DEMO_TENANT_TOKEN;
 }
 
 export function setTenantToken(token: string) {
@@ -152,9 +154,45 @@ export interface ValidationResult {
   }[];
 }
 
-// Demo periods match the seeded Rook & Roast dataset (Q1 baseline, Q2 post-implementation).
-export const DEMO_PERIOD = { period_start: "2026-01-01T00:00:00", period_end: "2026-03-31T00:00:00" };
-export const DEMO_POST_PERIOD = { post_period_start: "2026-04-01T00:00:00", post_period_end: "2026-06-30T00:00:00" };
+export interface EngagementPlan {
+  tenant: { name: string; slug: string; monitoring_tier?: string };
+  plan: {
+    brand_name: string;
+    proposal_month: string;
+    engagement_start: string;
+    scope: {
+      locations: string[];
+      excluded_scope: string[];
+      annual_fnb_revenue_estimate: number;
+      target_roi_payback_days: number;
+      delivery_window: string;
+      guardrails: string[];
+    };
+    timeline: {
+      phase: string;
+      name: string;
+      timing: string;
+      needs: string[];
+      deliverables: string[];
+    }[];
+    data_requirements: string[];
+    deliverables: { name: string; category: string; status: string }[];
+    terms: {
+      project_fee: number;
+      payment_structure: string;
+      invoice_1: number;
+      invoice_2: number;
+      delivery_window: string;
+      onsite_review: string;
+      optional_monitoring: string[];
+    };
+    franchise_angle: string[];
+  };
+}
+
+// Demo periods match the seeded Snakes & Lattes dataset.
+export const DEMO_PERIOD = { period_start: "2026-04-01T00:00:00", period_end: "2026-06-30T00:00:00" };
+export const DEMO_POST_PERIOD = { post_period_start: "2026-10-01T00:00:00", post_period_end: "2026-12-31T00:00:00" };
 
 export const api = {
   listLocations: () => request<Location[]>("/locations"),
@@ -206,6 +244,8 @@ export const api = {
 
   listValidationRuns: (locationId?: string) =>
     request<ValidationResult[]>(`/validation/runs${qs({ location_id: locationId })}`),
+
+  engagementPlan: () => request<EngagementPlan>("/engagement/plan"),
 };
 
 /** XLSX exports require the tenant bearer token, so a plain <a href> won't

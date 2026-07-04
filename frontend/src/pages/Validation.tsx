@@ -21,8 +21,8 @@ export function ValidationPage() {
   const [baseline, setBaseline] = useState<BaselineInfo | null>(null);
   const [result, setResult] = useState<ValidationResult | null>(null);
   const [inflationPct, setInflationPct] = useState("3.0");
-  const [seasonBaseline, setSeasonBaseline] = useState("1.10");
-  const [seasonPost, setSeasonPost] = useState("0.90");
+  const [seasonBaseline, setSeasonBaseline] = useState("0.90");
+  const [seasonPost, setSeasonPost] = useState("1.10");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -92,7 +92,7 @@ export function ValidationPage() {
         </select>
       </div>
       <p className="label-caps mb-8">
-        Baseline: Q1 2026 (Peak Season) · Post-implementation: Q2 2026 · Validated results only — projections live elsewhere
+        Baseline: Apr-Jun 2026 | Post-implementation: Oct-Dec 2026 | Validated results only - projections live elsewhere
       </p>
 
       {error && <div className="text-error mb-4 text-sm break-all">{error}</div>}
@@ -100,15 +100,15 @@ export function ValidationPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
         {/* Baseline lock */}
         <div className="border border-outline bg-surface p-5">
-          <h2 className="label-caps text-fire mb-4">1 · Baseline Lock</h2>
+          <h2 className="label-caps text-fire mb-4">1 | Baseline Lock</h2>
           {baseline ? (
             <>
               <p className="data-num text-2xl mb-2">{fmtUsdPlain(baseline.cm_total)}</p>
-              <p className="label-caps mb-1">Locked CM$ · {baseline.item_count} items</p>
+              <p className="label-caps mb-1">Locked CM$ | {baseline.item_count} items</p>
               <p className="label-caps text-on-surface-variant">
-                Signed by {baseline.signed_by} · {new Date(baseline.locked_at).toLocaleDateString()}
+                Signed by {baseline.signed_by} | {new Date(baseline.locked_at).toLocaleDateString()}
               </p>
-              <p className="label-caps text-star mt-3">LOCKED — IMMUTABLE</p>
+              <p className="label-caps text-star mt-3">LOCKED - IMMUTABLE</p>
             </>
           ) : (
             <>
@@ -122,7 +122,7 @@ export function ValidationPage() {
                 onClick={lock}
                 disabled={busy || !locationId}
               >
-                Acknowledge &amp; Lock Q1 Baseline
+                Acknowledge &amp; Lock Apr-Jun Baseline
               </button>
             </>
           )}
@@ -130,7 +130,7 @@ export function ValidationPage() {
 
         {/* Measurement assumptions */}
         <div className="border border-outline bg-surface p-5">
-          <h2 className="label-caps text-fire mb-4">2 · Measurement Assumptions</h2>
+          <h2 className="label-caps text-fire mb-4">2 | Measurement Assumptions</h2>
           <label className="label-caps block mb-1">Documented Food Inflation %</label>
           <input
             className="w-full bg-obsidian border border-outline px-3 py-2 data-num mb-3"
@@ -160,13 +160,13 @@ export function ValidationPage() {
             onClick={measure}
             disabled={busy || !baseline}
           >
-            {baseline ? "Measure Q2 vs Baseline" : "Lock a baseline first"}
+            {baseline ? "Measure Oct-Dec vs Baseline" : "Lock a baseline first"}
           </button>
         </div>
 
         {/* Headline results */}
         <div className={`border p-5 ${result ? "border-fire shadow-glow bg-surface" : "border-outline bg-surface"}`}>
-          <h2 className="label-caps text-fire mb-4">3 · Validated Results</h2>
+          <h2 className="label-caps text-fire mb-4">3 | Validated Results</h2>
           {result ? (
             <>
               <p className="label-caps mb-1">Validated BPS Lift (CM%)</p>
@@ -188,7 +188,7 @@ export function ValidationPage() {
       {result && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="border border-outline bg-surface p-5">
-            <h2 className="label-caps text-fire mb-4">P&amp;L Bridge — CM$ Baseline → Actual</h2>
+            <h2 className="label-caps text-fire mb-4">P&amp;L Bridge - CM$ Baseline to Actual</h2>
             <BridgeRow label="Baseline CM$" value={result.bridge.baseline_cm} isAnchor />
             <BridgeRow label="Seasonality Adjustment" value={result.bridge.seasonality_effect} />
             <BridgeRow label="Food Inflation" value={result.bridge.inflation_effect} />
@@ -205,7 +205,7 @@ export function ValidationPage() {
                   <th className="py-2">Item</th>
                   <th className="py-2 text-right">Baseline CM$</th>
                   <th className="py-2 text-right">Actual CM$</th>
-                  <th className="py-2 text-right">Δ</th>
+                  <th className="py-2 text-right">Delta</th>
                   <th className="py-2 text-right">Price Effect</th>
                 </tr>
               </thead>
@@ -222,7 +222,7 @@ export function ValidationPage() {
                         {fmtUsd(row.delta ?? 0)}
                       </td>
                       <td className={`py-1.5 text-right ${row.price_effect > 0 ? "text-fire" : "text-on-surface-variant"}`}>
-                        {row.price_effect ? fmtUsd(row.price_effect) : "—"}
+                        {row.price_effect ? fmtUsd(row.price_effect) : "-"}
                       </td>
                     </tr>
                   ))}
