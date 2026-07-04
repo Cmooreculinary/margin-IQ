@@ -4,6 +4,7 @@ import { BrandDashboardPage } from "./pages/BrandDashboard";
 import { LocationDashboardPage } from "./pages/LocationDashboard";
 import { ItemAnalysisTablePage } from "./pages/ItemAnalysisTable";
 import { ApprovalQueuePage } from "./pages/ApprovalQueue";
+import { ValidationPage } from "./pages/Validation";
 
 export function App() {
   return (
@@ -15,6 +16,7 @@ export function App() {
           <Route path="/locations/:locationId" element={<LocationDashboardPage />} />
           <Route path="/items" element={<ItemAnalysisTablePage />} />
           <Route path="/approvals" element={<ApprovalQueuePage />} />
+          <Route path="/validation" element={<ValidationPage />} />
         </Routes>
       </main>
     </div>

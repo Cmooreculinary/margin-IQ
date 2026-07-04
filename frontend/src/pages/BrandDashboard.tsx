@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { api, BrandDashboard as BrandDashboardData } from "../lib/api";
+import { api, BrandDashboard as BrandDashboardData, downloadAuthorized } from "../lib/api";
 import { KpiCard } from "../components/KpiCard";
 
 const fmtUsd = (n: number) => `$${n.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
@@ -19,7 +19,23 @@ export function BrandDashboardPage() {
 
   return (
     <div className="p-6 max-w-[1440px] mx-auto">
-      <h1 className="text-3xl mb-6 uppercase">Brand Dashboard</h1>
+      <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
+        <h1 className="text-3xl uppercase">Brand Dashboard</h1>
+        <div className="flex gap-3">
+          <button
+            className="border border-fire text-fire label-caps px-4 py-2 hover:bg-fire/10"
+            onClick={() => downloadAuthorized(api.exportAnalysisDeckUrl(), "margin-iq-analysis-deck.pdf")}
+          >
+            Analysis Deck (PDF)
+          </button>
+          <button
+            className="border border-fire text-fire label-caps px-4 py-2 hover:bg-fire/10"
+            onClick={() => downloadAuthorized(api.exportRecommendationsDeckUrl(), "margin-iq-recommendations-deck.pdf")}
+          >
+            Recs Deck (PDF)
+          </button>
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         <KpiCard label="Combined F&B Revenue" value={fmtUsd(data.combined_revenue)} />

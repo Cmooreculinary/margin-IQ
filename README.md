@@ -20,8 +20,8 @@ without rework:
 | 1 — Ingestion + Prime Cost engine | done — Toast adapter, reconciliation gate, PLU exclusions, labor calibration |
 | 2 — Analysis | done — quadrants, Pareto, seasonality matrix, competitor entry |
 | 3 — Recommendations + approval + pro forma ticker | done |
-| 4 — Portal polish, deliverable decks | partial — XLSX exports shipped; PDF decks and full portal chrome not built |
-| 5 — Validation engine, P&L bridge, offset % | not started — data model has room for it (baseline lock via `reconciliation_runs` + `financials` already time-boxed) |
+| 4 — Portal, deliverable decks, exports | done — XLSX exports + watermarked PDF Analysis & Recommendations decks; remaining decks (Brand/Location Strategic Plans, Seasonality Matrix, Validation Deck) not yet built |
+| 5 — Validation engine, P&L bridge, offset % | done — immutable signed baseline lock, post-period measurement adjusted for documented seasonality + food inflation, exactly-reconciling P&L bridge, item-level bridge, Offset % metric |
 | 6 — Franchise mode, monitoring tiers | not started — `monitoring_tier` already modeled on `tenants`; franchisor/franchisee hierarchy not implemented |
 
 **Demo dataset:** *Rook & Roast*, a fictional 3-location board-game cafe
@@ -29,7 +29,11 @@ without rework:
 / May–Oct slow seasons, a Game Table Cover Fee PLU excluded from prime-cost
 math, and **Loaded Nachos** as the deliberate food-cost mirage (77% food-cost
 margin, ~50% prime-cost margin once labor is allocated in) — so the Prime
-Cost story demos itself the moment you look at the item table.
+Cost story demos itself the moment you look at the item table. The seed also
+includes a Q2 2026 post-implementation period (five price recs "implemented"
+at +$0.25 realized price, summer-slow volumes, small elasticity dip) so the
+Validation page demos end-to-end: lock the Q1 baseline, measure Q2, and watch
+the P&L bridge and Offset % populate from realistic data.
 
 ## Architecture
 
@@ -162,6 +166,9 @@ analysis, approval, and XLSX export.
 | `POST /recommendations/{id}/decide` | Approve / modify / deny a recommendation |
 | `GET /recommendations/pro-forma` | Running cumulative cash-flow ticker |
 | `GET /dashboard/brand` / `GET /dashboard/location/{id}` | KPI roll-ups |
+| `POST /validation/baseline/lock` | Lock the immutable, digitally-acknowledged 90-day baseline |
+| `POST /validation/measure` | Post-implementation measurement: P&L bridge, validated BPS lift, Offset % |
+| `GET /exports/analysis-deck.pdf` / `GET /exports/recommendations-deck.pdf` | Watermarked PDF deliverable decks |
 
 Full interactive docs at `/docs` once the backend is running.
 

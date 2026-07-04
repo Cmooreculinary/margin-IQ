@@ -26,6 +26,15 @@ DEMO_TENANT_TOKEN = "rook-roast-demo-token"
 PERIOD_START = datetime(2026, 1, 1, tzinfo=timezone.utc)
 PERIOD_END = datetime(2026, 3, 31, tzinfo=timezone.utc)
 
+# Post-implementation period (Q2) for the validation-engine demo: the five
+# plowhorse price recs are "implemented" (+$0.25 realized price), volumes carry
+# the summer-slow seasonality plus a small elasticity dip on the changed items.
+POST_PERIOD_START = datetime(2026, 4, 1, tzinfo=timezone.utc)
+POST_PERIOD_END = datetime(2026, 6, 30, tzinfo=timezone.utc)
+IMPLEMENTED_PRICE_BUMPS = {"2002": 0.25, "2003": 0.25, "3001": 0.25, "3003": 0.25, "3004": 0.25}
+SUMMER_SLOW_FACTOR = 0.85  # documented seasonality: Q2 volume vs Q1 peak
+ELASTICITY_DIP = 0.98  # extra -2% volume on repriced items
+
 SEASONS = [
     {"name": "Peak Season", "start_month": 11, "end_month": 4},  # Nov-Apr: board-game cafe high season
     {"name": "Summer Slow", "start_month": 5, "end_month": 10},  # May-Oct
@@ -148,6 +157,32 @@ async def seed(db) -> dict:
             )
         await db.pmix_records.insert_many(pmix_docs)
 
+        # Q2 post-implementation PMIX (validation demo)
+        post_pmix_docs = []
+        post_pos_total_fnb = 0.0
+        for plu, name, category, daypart, complexity, price, food_cost, packaging, base_units in ITEM_CATALOG:
+            bump = IMPLEMENTED_PRICE_BUMPS.get(plu, 0.0)
+            realized_price = price + bump
+            units = round(base_units * multiplier * SUMMER_SLOW_FACTOR * (ELASTICITY_DIP if bump else 1.0))
+            revenue = round(units * realized_price, 2)
+            if plu not in EXCLUDED_PLUS:
+                post_pos_total_fnb += revenue
+            post_pmix_docs.append(
+                {
+                    "_id": new_id(),
+                    "tenant_id": tenant_id,
+                    "location_id": location_id,
+                    "plu": plu,
+                    "item_name": name,
+                    "period_start": POST_PERIOD_START,
+                    "period_end": POST_PERIOD_END,
+                    "units_sold": units,
+                    "gross_revenue": revenue,
+                    "source": "toast",
+                }
+            )
+        await db.pmix_records.insert_many(post_pmix_docs)
+
         # Labor matrix
         await db.labor_matrix.insert_many(
             [
@@ -203,6 +238,37 @@ async def seed(db) -> dict:
         recon_doc["tenant_id"] = tenant_id
         recon_doc["run_at"] = datetime.now(timezone.utc)
         await db.reconciliation_runs.insert_one(recon_doc)
+
+        # Q2 financials + reconciliation so the validation gate is already open
+        post_reported = round(post_pos_total_fnb * 1.003, 2)
+        await db.financials.insert_one(
+            {
+                "_id": new_id(),
+                "tenant_id": tenant_id,
+                "location_id": location_id,
+                "period_start": POST_PERIOD_START,
+                "period_end": POST_PERIOD_END,
+                "gross_sales": post_reported,
+                "food_cost_actual": round(post_pos_total_fnb * 0.30, 2),
+                "labor_cost_actual": round(
+                    (DINNER_LABOR_HOURS_BASE + ALL_DAY_LABOR_HOURS_BASE)
+                    * multiplier * SUMMER_SLOW_FACTOR * BLENDED_RATE, 2
+                ),
+            }
+        )
+        post_recon = reconcile(
+            location_id=location_id,
+            period_start=POST_PERIOD_START,
+            period_end=POST_PERIOD_END,
+            pos_total=compute_pos_total(post_pmix_docs, exclude_plus=EXCLUDED_PLUS),
+            reported_gross_sales=post_reported,
+            tolerance_pct=2.0,
+        )
+        post_recon_doc = dict(post_recon)
+        post_recon_doc["_id"] = new_id()
+        post_recon_doc["tenant_id"] = tenant_id
+        post_recon_doc["run_at"] = datetime.now(timezone.utc)
+        await db.reconciliation_runs.insert_one(post_recon_doc)
 
         # Competitors
         await db.competitors.insert_many(

@@ -116,8 +116,45 @@ export interface LocationDashboard {
   category_performance: Array<{ category: string; revenue: number; prime_cost_pct: number; cm_dollars: number; cm_pct: number; item_count: number }>;
 }
 
-// Demo period matches the seeded Rook & Roast dataset (Q1 2026).
+export interface BaselineInfo {
+  location_id: string;
+  signed_by: string;
+  locked_at: string;
+  revenue: number;
+  cm_total: number;
+  cm_pct: number;
+  item_count: number;
+}
+
+export interface ValidationResult {
+  measured_at: string;
+  assumptions: { seasonal_index_baseline: number; seasonal_index_post: number; food_inflation_pct: number };
+  baseline: { revenue: number; cm_total: number; cm_pct: number };
+  actual: { revenue: number; cm_total: number; cm_pct: number };
+  bridge: {
+    baseline_cm: number;
+    seasonality_effect: number;
+    inflation_effect: number;
+    price_effect: number;
+    pmix_volume_effect: number;
+    actual_cm: number;
+  };
+  validated_bps_lift: number;
+  offset_pct: number | null;
+  item_bridge: {
+    plu: string;
+    name: string;
+    status: "matched" | "new_since_baseline" | "discontinued";
+    baseline_cm_total: number;
+    actual_cm_total: number | null;
+    delta: number | null;
+    price_effect: number;
+  }[];
+}
+
+// Demo periods match the seeded Rook & Roast dataset (Q1 baseline, Q2 post-implementation).
 export const DEMO_PERIOD = { period_start: "2026-01-01T00:00:00", period_end: "2026-03-31T00:00:00" };
+export const DEMO_POST_PERIOD = { post_period_start: "2026-04-01T00:00:00", post_period_end: "2026-06-30T00:00:00" };
 
 export const api = {
   listLocations: () => request<Location[]>("/locations"),
@@ -147,6 +184,28 @@ export const api = {
 
   exportItemsXlsxUrl: (locationId: string) => `${BASE_URL}/items/export.xlsx${qs({ location_id: locationId, ...DEMO_PERIOD })}`,
   exportChecklistXlsxUrl: () => `${BASE_URL}/recommendations/export-checklist.xlsx`,
+  exportAnalysisDeckUrl: () => `${BASE_URL}/exports/analysis-deck.pdf${qs(DEMO_PERIOD)}`,
+  exportRecommendationsDeckUrl: () => `${BASE_URL}/exports/recommendations-deck.pdf${qs(DEMO_PERIOD)}`,
+
+  getBaseline: (locationId: string) => request<BaselineInfo>(`/validation/baseline/${locationId}`),
+
+  lockBaseline: (locationId: string, signedBy: string) =>
+    request<BaselineInfo>(`/validation/baseline/lock${qs({ location_id: locationId, ...DEMO_PERIOD })}`, {
+      method: "POST",
+      body: JSON.stringify({ signed_by: signedBy, acknowledged: true }),
+    }),
+
+  measureValidation: (
+    locationId: string,
+    assumptions: { food_inflation_pct: number; seasonal_index_baseline: number; seasonal_index_post: number }
+  ) =>
+    request<ValidationResult>(`/validation/measure${qs({ location_id: locationId, ...DEMO_POST_PERIOD })}`, {
+      method: "POST",
+      body: JSON.stringify(assumptions),
+    }),
+
+  listValidationRuns: (locationId?: string) =>
+    request<ValidationResult[]>(`/validation/runs${qs({ location_id: locationId })}`),
 };
 
 /** XLSX exports require the tenant bearer token, so a plain <a href> won't

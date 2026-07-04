@@ -11,9 +11,9 @@ async def test_seed_produces_a_reconciled_mirage_demo(db):
     tenant_id = result["tenant_id"]
     location_ids = result["location_ids"]
 
-    # Reconciliation gate passed for every location out of the box.
+    # Reconciliation gate passed for every location and both periods (Q1 + Q2).
     recon_runs = await db.reconciliation_runs.find({"tenant_id": tenant_id}).to_list(length=None)
-    assert len(recon_runs) == 3
+    assert len(recon_runs) == 6
     assert all(r["passed"] for r in recon_runs)
 
     # The cover fee is excluded from F&B PMIX math but was still ingested.
@@ -21,7 +21,7 @@ async def test_seed_produces_a_reconciled_mirage_demo(db):
     cover_fee_rows = await db.pmix_records.find(
         {"tenant_id": tenant_id, "location_id": chicago_id, "plu": "9001"}
     ).to_list(length=None)
-    assert len(cover_fee_rows) == 1
+    assert len(cover_fee_rows) == 2  # one row per period (Q1 baseline, Q2 post)
     assert "9001" in EXCLUDED_PLUS
 
     # Loaded Nachos should trip the food-cost mirage flag at every location.

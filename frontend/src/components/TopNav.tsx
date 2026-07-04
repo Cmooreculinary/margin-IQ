@@ -4,6 +4,7 @@ const links = [
   { to: "/", label: "Dashboard" },
   { to: "/items", label: "Menu Engineering" },
   { to: "/approvals", label: "Approval Queue" },
+  { to: "/validation", label: "Validation" },
 ];
 
 export function TopNav() {
