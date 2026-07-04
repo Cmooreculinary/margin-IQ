@@ -2,7 +2,7 @@
 # builds the frontend, then serves API + SPA from one FastAPI process.
 
 # --- Stage 1: build the frontend ---
-FROM node:20-slim AS frontend-build
+FROM node:22-slim AS frontend-build
 WORKDIR /build
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci
