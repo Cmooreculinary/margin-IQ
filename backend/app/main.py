@@ -20,9 +20,10 @@ STATIC_DIR = Path(os.environ.get("STATIC_DIR", "static"))
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     if settings.seed_demo:
-        from app.db import get_database
+        from app.db import get_database, verify_database_connection
         from app.seed.snakes_and_lattes import TENANT_SLUG, seed
 
+        await verify_database_connection()
         db = get_database()
         # Idempotent: add the demo tenant only when it is missing. This never
         # mutates an existing tenant and still lets an existing demo database get

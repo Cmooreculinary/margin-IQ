@@ -1,5 +1,6 @@
 """Mongo connection. Swappable for mongomock-motor in tests via `set_test_database`."""
 from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo.errors import PyMongoError
 
 from app.config import settings
 
@@ -13,6 +14,19 @@ def get_database():
         _client = AsyncIOMotorClient(settings.mongo_url)
         _db = _client[settings.mongo_db_name]
     return _db
+
+
+async def verify_database_connection() -> None:
+    """Fail startup with a clear error before seed logic touches collections."""
+    db = get_database()
+    try:
+        await db.command("ping")
+    except PyMongoError as exc:
+        raise RuntimeError(
+            "MongoDB connection failed. Check Render MONGO_URL, MongoDB Atlas "
+            "Network Access allowlist, database user credentials, and TLS/CA "
+            f"configuration. Original error: {exc}"
+        ) from exc
 
 
 def set_test_database(db) -> None:
