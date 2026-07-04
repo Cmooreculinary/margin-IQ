@@ -1,0 +1,28 @@
+# Production image for Render (and any other single-container host):
+# builds the frontend, then serves API + SPA from one FastAPI process.
+
+# --- Stage 1: build the frontend ---
+FROM node:20-slim AS frontend-build
+WORKDIR /build
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci
+COPY frontend/ .
+# Same-origin deployment: API lives at root, not behind a /api proxy.
+ENV VITE_API_BASE=""
+RUN npm run build
+
+# --- Stage 2: backend + built frontend ---
+FROM python:3.11-slim
+WORKDIR /app
+
+COPY backend/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY backend/ .
+COPY --from=frontend-build /build/dist ./static
+
+ENV STATIC_DIR=/app/static
+EXPOSE 8000
+
+# Render injects PORT; default to 8000 for local runs.
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]

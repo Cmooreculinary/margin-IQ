@@ -1,19 +1,46 @@
 from __future__ import annotations
 
+import os
+from contextlib import asynccontextmanager
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
+from app.config import settings
 from app.routers import dashboard, ingestion, items, locations, recommendations
+
+# Built frontend (copied in by the production Docker image). When present, this
+# app serves the SPA too, so API + portal run as a single same-origin service.
+STATIC_DIR = Path(os.environ.get("STATIC_DIR", "static"))
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    if settings.seed_demo:
+        from app.db import get_database
+        from app.seed.rook_and_roast import seed
+
+        db = get_database()
+        # Idempotent: only seed a fresh database, never touch a live tenant.
+        if await db.tenants.count_documents({}) == 0:
+            result = await seed(db)
+            print(f"Seeded Rook & Roast demo tenant (token: {result['api_token']})", flush=True)
+    yield
+
 
 app = FastAPI(
     title="Margin IQ API",
     description="Menu profitability intelligence for multi-location F&B operators.",
     version="0.1.0",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=settings.cors_origins.split(","),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -29,3 +56,16 @@ app.include_router(dashboard.router)
 @app.get("/health")
 async def health():
     return {"status": "ok", "service": "margin-iq-api"}
+
+
+if STATIC_DIR.is_dir():
+    app.mount("/assets", StaticFiles(directory=STATIC_DIR / "assets"), name="assets")
+
+    @app.get("/{full_path:path}", include_in_schema=False)
+    async def spa_fallback(full_path: str):
+        """Serve the SPA for any non-API path. API routes are registered above,
+        so they always win; this only catches client-side routes and /."""
+        candidate = STATIC_DIR / full_path
+        if full_path and candidate.is_file():
+            return FileResponse(candidate)
+        return FileResponse(STATIC_DIR / "index.html")

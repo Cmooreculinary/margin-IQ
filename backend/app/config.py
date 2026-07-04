@@ -7,6 +7,8 @@ class Settings(BaseSettings):
     anthropic_api_key: str = ""
     environment: str = "development"
     default_reconciliation_tolerance_pct: float = 2.0
+    seed_demo: bool = False
+    cors_origins: str = "http://localhost:5173"
 
     class Config:
         env_file = ".env"

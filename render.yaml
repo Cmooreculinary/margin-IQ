@@ -1,0 +1,30 @@
+# Render Blueprint -- one-click deploy of Margin IQ as a single web service
+# (FastAPI serving both the API and the built React portal).
+#
+# Render does not host MongoDB, so MONGO_URL must point at an external
+# instance -- the MongoDB Atlas free tier (M0) works fine:
+#   1. Create a free cluster at https://cloud.mongodb.com
+#   2. Add a database user + allow access from 0.0.0.0/0 (or Render's IPs)
+#   3. Paste the mongodb+srv:// connection string when Render prompts for MONGO_URL
+#
+# SEED_DEMO=true seeds the Rook & Roast demo tenant on first boot (only when
+# the database is empty -- it never touches existing data). The portal's
+# default token matches the seeded tenant, so the deployed app is demoable
+# immediately. Set it to false for a real engagement.
+
+services:
+  - type: web
+    name: margin-iq
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: MONGO_URL
+        sync: false # prompted at deploy time -- paste your Atlas connection string
+      - key: MONGO_DB_NAME
+        value: margin_iq
+      - key: SEED_DEMO
+        value: "true"
+      - key: CORS_ORIGINS
+        value: "http://localhost:5173" # same-origin in prod; only dev needs CORS

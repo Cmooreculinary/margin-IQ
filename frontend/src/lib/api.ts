@@ -1,4 +1,7 @@
-const BASE_URL = "/api";
+// Dev: "/api" is proxied to the backend by Vite (see vite.config.ts).
+// Production (single combined service): the API is same-origin at root, so the
+// Render build sets VITE_API_BASE="" .
+const BASE_URL = import.meta.env.VITE_API_BASE ?? "/api";
 const TOKEN_STORAGE_KEY = "margin_iq_tenant_token";
 export const DEMO_TENANT_TOKEN = "rook-roast-demo-token";
 

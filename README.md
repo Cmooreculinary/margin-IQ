@@ -77,6 +77,30 @@ projected BPS lift, and a PMIX offset from an editable elasticity assumption
 per quadrant. The pro forma ticker sums cash impact for `approved`/`modified`
 recommendations only, at brand and location level.
 
+## Deploying on Render
+
+The repo ships a `render.yaml` blueprint that deploys Margin IQ as a **single
+web service**: the production `Dockerfile` builds the React portal and serves
+it from the FastAPI process (same origin — no CORS, one free instance).
+
+1. **Database** — Render doesn't host MongoDB, so create a free MongoDB Atlas
+   cluster (M0) at https://cloud.mongodb.com: add a database user, allow
+   network access from `0.0.0.0/0` (or Render's outbound IPs), and copy the
+   `mongodb+srv://...` connection string.
+2. **Deploy** — in the Render dashboard: **New → Blueprint**, connect this
+   GitHub repo, pick the `claude/margin-iq-platform-7oov21` branch (or `main`
+   once merged). Render reads `render.yaml` and prompts for `MONGO_URL` —
+   paste the Atlas string.
+3. **Demo data** — `SEED_DEMO=true` (the blueprint default) seeds the
+   Rook & Roast demo tenant on first boot *only if the database is empty*.
+   The deployed portal works immediately with the demo token. Set it to
+   `false` for a real engagement.
+4. Health check is `/health`; the portal is at `/`, interactive API docs at
+   `/docs`.
+
+Free-tier note: Render free web services sleep after inactivity and Atlas M0
+is capped at 512 MB — both are fine for a demo; upgrade plans for production.
+
 ## Running locally
 
 ### Docker (recommended)
