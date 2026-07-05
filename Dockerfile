@@ -7,8 +7,7 @@ WORKDIR /build
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci
 COPY frontend/ .
-# Same-origin deployment: API lives at root, not behind a /api proxy.
-ENV VITE_API_BASE=""
+# API is served under /api in all environments -- the frontend default.
 RUN npm run build
 
 # --- Stage 2: backend + built frontend ---

@@ -4,7 +4,7 @@ import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -49,14 +49,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(locations.router)
-app.include_router(ingestion.router)
-app.include_router(items.router)
-app.include_router(recommendations.router)
-app.include_router(dashboard.router)
-app.include_router(validation.router)
-app.include_router(exports.router)
-app.include_router(engagement.router)
+# All API routes live under /api so they can never collide with SPA client
+# routes (e.g. GET /items the API vs. /items the portal page).
+api = APIRouter(prefix="/api")
+api.include_router(locations.router)
+api.include_router(ingestion.router)
+api.include_router(items.router)
+api.include_router(recommendations.router)
+api.include_router(dashboard.router)
+api.include_router(validation.router)
+api.include_router(exports.router)
+api.include_router(engagement.router)
+app.include_router(api)
 
 
 @app.get("/health")

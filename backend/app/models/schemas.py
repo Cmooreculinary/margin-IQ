@@ -140,6 +140,7 @@ class CompetitorEntry(BaseModel):
     tenant_id: str
     location_id: str
     competitor_name: str
+    address: Optional[str] = None
     item_name: str
     price: float
 

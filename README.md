@@ -171,7 +171,14 @@ analysis, approval, and XLSX export.
 | `POST /validation/measure` | Post-implementation measurement: P&L bridge, validated BPS lift, Offset % |
 | `GET /exports/analysis-deck.pdf` / `GET /exports/recommendations-deck.pdf` | Watermarked PDF deliverable decks |
 
-Full interactive docs at `/docs` once the backend is running.
+All API routes are served under the `/api` prefix (e.g. `/api/items`) so they
+never collide with portal client routes. Full interactive docs at `/docs`
+once the backend is running.
+
+The seeded engagement plan (phases, dated data-needed checklist, deliverable
+schedule) is served at `/api/engagement/plan`, rendered at `/engagement` in
+the portal, and documented in
+`docs/engagements/snakes-and-lattes-2026-07-timeline.md`.
 
 ## Guardrails honored
 

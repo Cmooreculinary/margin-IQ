@@ -187,6 +187,11 @@ export interface EngagementPlan {
       optional_monitoring: string[];
     };
     franchise_angle: string[];
+    calendar?: {
+      assumes: string;
+      data_checklist: { item: string; due: string; status: "outstanding" | "received" }[];
+      milestones: { date: string; name: string; owner: "client" | "ddd" | "both"; type: "milestone" | "deliverable" | "payment" }[];
+    };
   };
 }
 

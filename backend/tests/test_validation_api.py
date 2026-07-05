@@ -5,7 +5,7 @@ import pytest
 from httpx import ASGITransport, AsyncClient
 
 from app.main import app
-from app.seed.rook_and_roast import (
+from app.seed.snakes_and_lattes import (
     DEMO_TENANT_TOKEN,
     PERIOD_END,
     PERIOD_START,
@@ -32,13 +32,13 @@ async def test_validation_flow_and_pdf_decks(db):
     async with AsyncClient(transport=transport, base_url="http://test") as client:
         # Lock requires acknowledgment
         resp = await client.post(
-            "/validation/baseline/lock", params=lock_params,
+            "/api/validation/baseline/lock", params=lock_params,
             headers=headers, json={"signed_by": "operator", "acknowledged": False},
         )
         assert resp.status_code == 400
 
         resp = await client.post(
-            "/validation/baseline/lock", params=lock_params,
+            "/api/validation/baseline/lock", params=lock_params,
             headers=headers, json={"signed_by": "operator", "acknowledged": True},
         )
         assert resp.status_code == 200
@@ -46,14 +46,14 @@ async def test_validation_flow_and_pdf_decks(db):
 
         # Baselines are immutable -- second lock rejected
         resp = await client.post(
-            "/validation/baseline/lock", params=lock_params,
+            "/api/validation/baseline/lock", params=lock_params,
             headers=headers, json={"signed_by": "operator", "acknowledged": True},
         )
         assert resp.status_code == 409
 
         # Measure Q2 against the locked Q1 baseline
         resp = await client.post(
-            "/validation/measure", params=measure_params,
+            "/api/validation/measure", params=measure_params,
             headers=headers,
             json={
                 "food_inflation_pct": 0.03,
@@ -79,15 +79,15 @@ async def test_validation_flow_and_pdf_decks(db):
         # Excluded cover-fee PLU stays out of validation math
         assert all(row["plu"] != "9001" for row in result["item_bridge"])
 
-        resp = await client.get("/validation/runs", headers=headers, params={"location_id": chicago_id})
+        resp = await client.get("/api/validation/runs", headers=headers, params={"location_id": chicago_id})
         assert resp.status_code == 200
         assert len(resp.json()) == 1
 
         # PDF decks
-        resp = await client.get("/exports/analysis-deck.pdf", headers=headers, params=q1)
+        resp = await client.get("/api/exports/analysis-deck.pdf", headers=headers, params=q1)
         assert resp.status_code == 200
         assert resp.content[:5] == b"%PDF-"
 
-        resp = await client.get("/exports/recommendations-deck.pdf", headers=headers, params=q1)
+        resp = await client.get("/api/exports/recommendations-deck.pdf", headers=headers, params=q1)
         assert resp.status_code == 200
         assert resp.content[:5] == b"%PDF-"

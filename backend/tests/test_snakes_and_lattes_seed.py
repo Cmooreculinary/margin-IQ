@@ -62,7 +62,7 @@ async def test_engagement_plan_endpoint(db):
 
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
-        resp = await client.get("/engagement/plan", headers=headers)
+        resp = await client.get("/api/engagement/plan", headers=headers)
 
     assert resp.status_code == 200
     payload = resp.json()

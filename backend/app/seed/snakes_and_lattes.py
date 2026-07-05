@@ -39,6 +39,7 @@ LOCATIONS = [
     {
         "code": "TMP",
         "name": "Tempe, AZ - Flagship",
+        "address": "20 W 6th St, Tempe, AZ 85281",
         "sqft": 7500,
         "target_q2_fnb_revenue": 675000,
         "post_season_factor": 1.12,
@@ -53,6 +54,7 @@ LOCATIONS = [
     {
         "code": "CHI",
         "name": "Chicago, IL",
+        "address": "1965 N Milwaukee Ave, Chicago, IL 60647",
         "sqft": 6100,
         "target_q2_fnb_revenue": 462500,
         "post_season_factor": 1.05,
@@ -67,6 +69,7 @@ LOCATIONS = [
     {
         "code": "TUC",
         "name": "Tucson, AZ",
+        "address": "988 E University Blvd, Tucson, AZ 85719",
         "sqft": 2300,
         "target_q2_fnb_revenue": 112500,
         "post_season_factor": 1.02,
@@ -117,24 +120,27 @@ IMPLEMENTED_PRICE_BUMPS = {
 }
 ELASTICITY_DIP = 0.985
 
+# Proximity-verified comparable-segment F&B venues near each location
+# (addresses from public listings; the set is confirmed with the client at
+# kickoff -- not board-game-cafe concept twins, per the engagement design).
 COMPETITORS_BY_LOCATION = {
     "TMP": [
-        ("Culinary Dropout Tempe", "Classic Burger", 18.50),
-        ("Pedal Haus Brewery", "Local Draft Beer", 8.50),
-        ("Cornish Pasty Co", "Quebec Poutine", 14.00),
-        ("Postino Annex", "House Cocktail", 13.50),
+        ("Culinary Dropout", "149 S Farmer Ave, Tempe, AZ 85281", "Classic Burger", 18.50),
+        ("Pedal Haus Brewery", "730 S Mill Ave, Tempe, AZ 85281", "Local Draft Beer", 8.50),
+        ("The Handlebar Tempe", "680 S Mill Ave, Tempe, AZ 85281", "Loaded Nachos", 14.50),
+        ("Postino Annex", "615 S College Ave, Tempe, AZ 85281", "House Cocktail", 13.50),
     ],
     "CHI": [
-        ("Kaiser Tiger", "Classic Burger", 18.00),
-        ("The Gage", "Wine Pour", 12.00),
-        ("Emporium Arcade Bar", "Local Draft Beer", 8.00),
-        ("Beatrix Loop", "Brunch Burrito", 16.00),
+        ("Emporium Arcade Bar (Logan Square)", "2363 N Milwaukee Ave, Chicago, IL 60647", "Local Draft Beer", 8.00),
+        ("Parson's Chicken & Fish", "2952 W Armitage Ave, Chicago, IL 60647", "Chicken Tenders & Fries", 17.00),
+        ("The Moonlighter", "3204 W Armitage Ave, Chicago, IL 60647", "Classic Burger", 15.00),
+        ("The Old Plank", "2700 N Milwaukee Ave, Chicago, IL 60647", "Brunch Burrito", 15.00),
     ],
     "TUC": [
-        ("The Monica", "Classic Burger", 16.50),
-        ("Ermanos Bar", "Local Draft Beer", 7.50),
-        ("Reilly Craft Pizza", "House Cocktail", 13.00),
-        ("Tumerico", "Vegan Buddha Bowl", 14.00),
+        ("Gentle Ben's Brewing Co.", "865 E University Blvd, Tucson, AZ 85719", "Local Draft Beer", 6.50),
+        ("Frog & Firkin", "874 E University Blvd, Tucson, AZ 85719", "Classic Burger", 14.50),
+        ("No Anchovies", "870 E University Blvd, Tucson, AZ 85719", "Loaded Nachos", 13.00),
+        ("Illegal Pete's", "876 E University Blvd, Tucson, AZ 85719", "Vegan Buddha Bowl", 12.50),
     ],
 }
 
@@ -272,6 +278,41 @@ ENGAGEMENT_PLAN = {
             "Executive: Professional plus quarterly strategic review deck and new-item profit modeling.",
         ],
     },
+    "calendar": {
+        "assumes": "Proposal e-signed Monday, July 6, 2026 (July 2026 start per proposal)",
+        "data_checklist": [
+            {"item": "Designated F&B/operations SME for kickoff + review sessions", "due": "2026-07-09", "status": "outstanding"},
+            {"item": "F&B competitor set confirmation per location (DDD draft list provided)", "due": "2026-07-09", "status": "outstanding"},
+            {"item": "Signed Baseline & Validation Period Design document", "due": "2026-07-13", "status": "outstanding"},
+            {"item": "90-day Toast PMIX export - Tempe", "due": "2026-07-13", "status": "outstanding"},
+            {"item": "90-day Toast PMIX export - Chicago", "due": "2026-07-13", "status": "outstanding"},
+            {"item": "90-day Toast PMIX export - Tucson", "due": "2026-07-13", "status": "outstanding"},
+            {"item": "Location financial statements (gross sales, food cost, labor cost) x3", "due": "2026-07-13", "status": "outstanding"},
+            {"item": "Recipe cost data by PLU / menu item (menu master)", "due": "2026-07-13", "status": "outstanding"},
+            {"item": "Labor matrix (hours + rates by location and daypart)", "due": "2026-07-13", "status": "outstanding"},
+            {"item": "Game fee PLU identification ($6/person) for exclusion", "due": "2026-07-13", "status": "outstanding"},
+            {"item": "Tempe seasonality parameters confirmation (weekly revenue bands)", "due": "2026-07-13", "status": "outstanding"},
+        ],
+        "milestones": [
+            {"date": "2026-07-06", "name": "Proposal e-signed; NDA + Consulting Services Agreement sent (DocuSign)", "owner": "client", "type": "milestone"},
+            {"date": "2026-07-08", "name": "Agreements executed - engagement start", "owner": "both", "type": "milestone"},
+            {"date": "2026-07-08", "name": "Invoice 1 issued: $4,950 (50%), due Jul 18", "owner": "ddd", "type": "payment"},
+            {"date": "2026-07-09", "name": "Kickoff call: data package walkthrough, baseline period, seasonality parameters, competitor sets", "owner": "both", "type": "milestone"},
+            {"date": "2026-07-10", "name": "Baseline & Validation Period Design document (for client signature)", "owner": "ddd", "type": "deliverable"},
+            {"date": "2026-07-13", "name": "Complete client data package received - engagement clock starts", "owner": "client", "type": "milestone"},
+            {"date": "2026-07-16", "name": "Data-quality & reconciliation flags reported (Phase II gate)", "owner": "ddd", "type": "deliverable"},
+            {"date": "2026-07-24", "name": "Seasonality Matrix (Tempe summer-slow / Nov-Apr peak model)", "owner": "ddd", "type": "deliverable"},
+            {"date": "2026-07-27", "name": "Analysis Deck + Recommendations Deck delivered; portal approval window opens", "owner": "ddd", "type": "deliverable"},
+            {"date": "2026-07-27", "name": "Brand Strategic Plan + 3 Location Strategic Plans", "owner": "ddd", "type": "deliverable"},
+            {"date": "2026-07-29", "name": "On-site recommendation review at client HQ (Randy; pre-approved economy travel at cost)", "owner": "both", "type": "milestone"},
+            {"date": "2026-07-31", "name": "Approved action set: implementation checklist (PDF + XLSX) + final Brand & Location Pro Formas", "owner": "ddd", "type": "deliverable"},
+            {"date": "2026-07-31", "name": "Invoice 2 issued: $4,950 (50%), due Aug 10", "owner": "ddd", "type": "payment"},
+            {"date": "2026-08-10", "name": "Client implements approved menu changes (target)", "owner": "client", "type": "milestone"},
+            {"date": "2026-11-09", "name": "90-day post-implementation measurement window closes (Aug 10 - Nov 8)", "owner": "both", "type": "milestone"},
+            {"date": "2026-11-13", "name": "Validation Deck: P&L bridge, treatment/control, validated BPS lift, Offset % metric, annualized cash impact", "owner": "ddd", "type": "deliverable"},
+            {"date": "2026-11-13", "name": "Monitoring tier decision (Essential / Professional / Executive) - optional", "owner": "client", "type": "milestone"},
+        ],
+    },
     "franchise_angle": [
         "Tempe is the franchise model location and should be optimized before replication.",
         "Validated basis-point lift can support internal Item 19 / FDD data work without legal-claim language.",
@@ -288,16 +329,25 @@ def _base_fnb_revenue() -> float:
 async def seed(db) -> dict:
     existing = await db.tenants.find_one({"slug": TENANT_SLUG})
     if existing:
-        if not await db.engagement_plans.find_one({"tenant_id": existing["_id"]}):
-            await db.engagement_plans.insert_one(
-                {
-                    "_id": new_id(),
-                    "tenant_id": existing["_id"],
-                    "brand_name": "Snakes & Lattes",
-                    **ENGAGEMENT_PLAN,
-                    "created_at": datetime.now(timezone.utc),
-                }
-            )
+        # The plan is static engagement config: refresh it in place so a live
+        # deployment picks up schedule/checklist updates on the next boot.
+        await db.engagement_plans.delete_many({"tenant_id": existing["_id"]})
+        await db.engagement_plans.insert_one(
+            {
+                "_id": new_id(),
+                "tenant_id": existing["_id"],
+                "brand_name": "Snakes & Lattes",
+                **ENGAGEMENT_PLAN,
+                "created_at": datetime.now(timezone.utc),
+            }
+        )
+        # Backfill location addresses added after the original seed.
+        for loc in LOCATIONS:
+            if loc.get("address"):
+                await db.locations.update_many(
+                    {"tenant_id": existing["_id"], "code": loc["code"]},
+                    {"$set": {"address": loc["address"]}},
+                )
         locations = await db.locations.find({"tenant_id": existing["_id"]}).to_list(length=None)
         return {
             "tenant_id": existing["_id"],
@@ -356,6 +406,7 @@ async def seed(db) -> dict:
                 "tenant_id": tenant_id,
                 "name": loc["name"],
                 "code": loc["code"],
+                "address": loc.get("address"),
                 "sqft": loc["sqft"],
                 "concept_notes": loc["concept_notes"],
                 "daypart_hours": loc["daypart_hours"],
@@ -495,10 +546,11 @@ async def seed(db) -> dict:
                     "tenant_id": tenant_id,
                     "location_id": location_id,
                     "competitor_name": competitor_name,
+                    "address": address,
                     "item_name": item_name,
                     "price": price,
                 }
-                for competitor_name, item_name, price in COMPETITORS_BY_LOCATION[loc["code"]]
+                for competitor_name, address, item_name, price in COMPETITORS_BY_LOCATION[loc["code"]]
             ]
         )
 
