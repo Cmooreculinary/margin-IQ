@@ -1,6 +1,6 @@
 """Mongo connection. Swappable for mongomock-motor in tests via `set_test_database`."""
 from motor.motor_asyncio import AsyncIOMotorClient
-from pymongo.errors import PyMongoError
+from pymongo.errors import ConfigurationError, PyMongoError
 
 from app.config import settings
 
@@ -11,7 +11,21 @@ _db = None
 def get_database():
     global _client, _db
     if _db is None:
-        _client = AsyncIOMotorClient(settings.mongo_url)
+        try:
+            _client = AsyncIOMotorClient(settings.mongo_url)
+        except (ValueError, ConfigurationError) as exc:
+            # Not chained and no parser detail: both the URL and pymongo's
+            # parse error can contain the database password, and this message
+            # ends up in deploy logs.
+            raise RuntimeError(
+                "MONGO_URL is not a valid MongoDB connection string "
+                f"({type(exc).__name__} while parsing it; detail withheld "
+                "because it may contain credentials). Expected format: "
+                "mongodb+srv://USER:PASSWORD@HOST/ -- check that the '@' "
+                "between the password and the hostname is present and that "
+                "any special characters in the username or password are "
+                "URL-encoded (urllib.parse.quote_plus)."
+            ) from None
         _db = _client[settings.mongo_db_name]
     return _db
 
