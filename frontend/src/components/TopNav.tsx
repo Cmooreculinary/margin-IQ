@@ -6,6 +6,7 @@ const links = [
   { to: "/approvals", label: "Approval Queue" },
   { to: "/validation", label: "Validation" },
   { to: "/engagement", label: "Engagement Plan" },
+  { to: "/documents", label: "Upload" },
 ];
 
 export function TopNav() {

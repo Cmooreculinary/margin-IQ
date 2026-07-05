@@ -145,6 +145,17 @@ class CompetitorEntry(BaseModel):
     price: float
 
 
+# ---------- Document scanning ----------
+
+class ScanRecord(BaseModel):
+    target: str  # financials | menu_item | labor_matrix | pmix_row | competitor
+    data: dict
+
+
+class ScanCommit(BaseModel):
+    records: list[ScanRecord]
+
+
 # ---------- Recommendations / Approval ----------
 
 class RecommendationDecision(BaseModel):

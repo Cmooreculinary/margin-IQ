@@ -53,6 +53,17 @@ analysis endpoint (`/items`, `/recommendations/generate`, `/dashboard/*`) will
 serve data for a location — see `app/services/gate.py`. PMIX revenue must tie
 out to reported financials within a configurable tolerance (default 2%).
 
+**Document scanning** (`app/services/document_scan.py`, portal page `/documents`):
+upload a photo, screenshot, or PDF of a P&L, menu, PMIX report, labor
+schedule, or competitor menu and Claude extracts the structured data
+(`POST /api/ingestion/scan`). Nothing is written until the operator reviews
+the extracted records in the portal and commits them
+(`POST /api/ingestion/scan/commit`) — scanned data is validated against the
+same schemas as hand-entered data and lands in the same collections.
+Requires the `ANTHROPIC_API_KEY` environment variable (an Anthropic API key
+with available credits); without it the scan endpoint returns 503 and the
+rest of the app works normally.
+
 **Adapter-based ingestion**: `app/adapters/base.py` defines the POS adapter
 interface; `app/adapters/toast.py` is the v1 implementation. Square, Clover,
 and Lightspeed adapters drop in without touching the ingestion pipeline,
@@ -162,6 +173,8 @@ analysis, approval, and XLSX export.
 | `POST /ingestion/labor-matrix` | Set labor hours + blended rate + complexity weights per daypart |
 | `POST /ingestion/menu-items/{plu}/exclude` | Tag a non-F&B PLU (cover fee, retail) as excluded |
 | `POST /ingestion/reconcile` | Run the reconciliation gate for a location/period |
+| `POST /ingestion/scan` | Upload an image/PDF; Claude extracts structured records for review |
+| `POST /ingestion/scan/commit` | Commit operator-reviewed scanned records to the database |
 | `GET /items` | Item analysis table (prime cost, CM$/%, quadrant, mirage flag) — gated |
 | `GET /items/pareto` | Revenue vs. margin Pareto (separate 80% lists) — gated |
 | `GET /items/export.xlsx` | Watermarked XLSX export of the item table |
