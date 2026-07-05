@@ -5,6 +5,7 @@ services:
       - "8000:8000"
     environment:
       SQLITE_PATH: /data/margin_iq.db
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
     volumes:
       - ./backend:/app
       - sqlite_data:/data

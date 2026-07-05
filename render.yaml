@@ -25,6 +25,8 @@ services:
     envVars:
       - key: SQLITE_PATH
         value: /data/margin_iq.db
+      - key: ANTHROPIC_API_KEY
+        sync: false # paste your Anthropic API key at deploy time -- powers document scanning
       - key: SEED_DEMO
         value: "true"
       - key: CORS_ORIGINS

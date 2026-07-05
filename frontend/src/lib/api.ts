@@ -199,8 +199,43 @@ export interface EngagementPlan {
 export const DEMO_PERIOD = { period_start: "2026-04-01T00:00:00", period_end: "2026-06-30T00:00:00" };
 export const DEMO_POST_PERIOD = { post_period_start: "2026-10-01T00:00:00", post_period_end: "2026-12-31T00:00:00" };
 
+export interface ScanRecord {
+  target: "financials" | "menu_item" | "labor_matrix" | "pmix_row" | "competitor";
+  data: Record<string, string | number | null | undefined>;
+}
+
+export interface ScanResult {
+  document_type: string;
+  summary: string;
+  warnings: string[];
+  records: ScanRecord[];
+  filename?: string;
+}
+
+/** Multipart upload -- must NOT set Content-Type (the browser adds the boundary). */
+export async function scanDocument(file: File): Promise<ScanResult> {
+  const form = new FormData();
+  form.append("file", file);
+  const res = await fetch(`${BASE_URL}/ingestion/scan`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${getTenantToken()}` },
+    body: form,
+  });
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`${res.status} ${res.statusText}: ${body}`);
+  }
+  return res.json() as Promise<ScanResult>;
+}
+
 export const api = {
   listLocations: () => request<Location[]>("/locations"),
+
+  commitScan: (records: ScanRecord[]) =>
+    request<{ committed: Record<string, number>; total: number }>("/ingestion/scan/commit", {
+      method: "POST",
+      body: JSON.stringify({ records }),
+    }),
 
   listItems: (locationId: string, filters: Partial<{ category: string; daypart: string; quadrant: string; flagged_only: boolean }> = {}) =>
     request<ItemRow[]>(`/items${qs({ location_id: locationId, ...DEMO_PERIOD, ...filters })}`),
