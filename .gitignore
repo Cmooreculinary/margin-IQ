@@ -20,3 +20,8 @@ dist/
 # Editors
 .vscode/
 .idea/
+
+# SQLite
+*.db
+*.db-wal
+*.db-shm

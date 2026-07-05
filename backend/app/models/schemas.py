@@ -1,4 +1,4 @@
-"""Pydantic request/response schemas. Mongo documents are stored as plain dicts;
+"""Pydantic request/response schemas. Database documents are stored as plain dicts;
 these models validate the boundary (API in/out), not the storage layer."""
 from __future__ import annotations
 

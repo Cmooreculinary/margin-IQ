@@ -1,5 +1,5 @@
-"""Glue layer: pulls a location's menu items + PMIX + labor matrix out of Mongo
-and turns them into the ItemPrimeCost objects every downstream service
+"""Glue layer: pulls a location's menu items + PMIX + labor matrix out of the
+database and turns them into the ItemPrimeCost objects every downstream service
 (menu engineering, recommendations, dashboard, exports) operates on."""
 from __future__ import annotations
 
