@@ -178,10 +178,10 @@ export interface EngagementPlan {
     data_requirements: string[];
     deliverables: { name: string; category: string; status: string }[];
     terms: {
-      project_fee: number;
+      project_fee: number | string;
       payment_structure: string;
-      invoice_1: number;
-      invoice_2: number;
+      invoice_1: number | string;
+      invoice_2: number | string;
       delivery_window: string;
       onsite_review: string;
       optional_monitoring: string[];

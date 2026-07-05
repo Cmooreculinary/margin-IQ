@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { api, EngagementPlan } from "../lib/api";
 
 const fmtUsd = (n: number) => `$${n.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+const fmtFee = (v: number | string) => (typeof v === "number" ? fmtUsd(v) : v);
 const fmtDate = (iso: string) =>
   new Date(`${iso}T00:00:00`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
@@ -115,15 +116,15 @@ export function EngagementPlanPage() {
             <div className="space-y-2 text-sm">
               <div className="flex justify-between gap-4">
                 <span className="label-caps">Project Fee</span>
-                <span className="data-num">{fmtUsd(plan.terms.project_fee)}</span>
+                <span className="data-num">{fmtFee(plan.terms.project_fee)}</span>
               </div>
               <div className="flex justify-between gap-4">
                 <span className="label-caps">Invoice 1</span>
-                <span className="data-num">{fmtUsd(plan.terms.invoice_1)}</span>
+                <span className="data-num">{fmtFee(plan.terms.invoice_1)}</span>
               </div>
               <div className="flex justify-between gap-4">
                 <span className="label-caps">Invoice 2</span>
-                <span className="data-num">{fmtUsd(plan.terms.invoice_2)}</span>
+                <span className="data-num">{fmtFee(plan.terms.invoice_2)}</span>
               </div>
               <p className="text-on-surface-variant pt-3">{plan.terms.payment_structure}</p>
               <p className="text-on-surface-variant">{plan.terms.onsite_review}</p>

@@ -68,4 +68,4 @@ async def test_engagement_plan_endpoint(db):
     payload = resp.json()
     assert payload["tenant"]["name"] == "Snakes & Lattes - US"
     assert payload["plan"]["scope"]["locations"] == ["Chicago, IL", "Tempe, AZ", "Tucson, AZ"]
-    assert payload["plan"]["terms"]["project_fee"] == 9900
+    assert payload["plan"]["terms"]["project_fee"] == "TBA"

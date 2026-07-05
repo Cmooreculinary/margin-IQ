@@ -1,5 +1,5 @@
 # Snakes & Lattes (US) — Engagement Timeline
-### DeepDishData (DDD) · Menu Profitability Engagement · $9,900 fixed fee
+### DeepDishData (DDD) · Menu Profitability Engagement · Project fee: TBA (fixed fee, 50/50 payment structure)
 *Prepared July 4, 2026 · Assumes proposal e-sign Monday, July 6, 2026 (a "July 2026 start," per proposal)*
 
 **Scope:** 3 US locations — Tempe (flagship, 20 W 6th St), Chicago (Logan Square, 1965 N Milwaukee Ave), Tucson (Main Gate Square, 988 E University Blvd). Canadian locations excluded. Target ROI payback: <30 days after menu implementation. The engagement clock starts on **complete, validated data receipt** — incomplete or materially inaccurate data extends the timeline.
@@ -11,7 +11,7 @@
 | Date | Step | Owner | What happens |
 |---|---|---|---|
 | **Mon Jul 6** | Proposal e-signed | Client | DDD follows up same-day with Mutual NDA + Consulting Services Agreement via DocuSign |
-| **Wed Jul 8** | Agreements executed — engagement start | Both | **Invoice 1: $4,950 (50%)** issued, due Jul 18 (net 10) |
+| **Wed Jul 8** | Agreements executed — engagement start | Both | **Invoice 1: TBA (50% of project fee)** issued, due Jul 18 (net 10) |
 | **Thu Jul 9** | Kickoff call | Both | Data package walkthrough with the client SME; confirm baseline period, Tempe seasonality parameters, and the F&B competitor set for each location |
 | **Fri Jul 10** | Phase I deliverable | DDD | **Baseline & Validation Period Design document** delivered for client signature (baseline periods, 3-location scope, seasonal matching rules, treatment/control methodology) |
 | **Mon Jul 13** | Complete data package due | Client | See "Information still needed" below — the engagement clock starts here |
@@ -20,7 +20,7 @@
 | **Mon Jul 20 – Fri Jul 24** | Phase III: Analysis | DDD | Quadrant classification, Pareto, F&B competitor benchmarking, AI location strategic plans with psychographic segmentation, **Seasonality Matrix (Tempe)** delivered Jul 24 |
 | **Mon Jul 27** | Phase IV deliverables | DDD | **Analysis Deck + Recommendations Deck + Brand Strategic Plan + 3 Location Strategic Plans** delivered; portal approval window opens (approve / modify / deny per item, running pro forma) |
 | **Wed Jul 29** | On-site recommendation review | Both | Randy travels to client HQ (economy, at cost, pre-approved — not in project fee); recommendations walked through with the client team in the room |
-| **Fri Jul 31** | Final delivery — Phase IV closes | DDD | **Approved action set: implementation checklist (PDF + XLSX) + final Brand & Location Pro Formas.** **Invoice 2: $4,950 (50%)** issued, due Aug 10 |
+| **Fri Jul 31** | Final delivery — Phase IV closes | DDD | **Approved action set: implementation checklist (PDF + XLSX) + final Brand & Location Pro Formas.** **Invoice 2: TBA (50% of project fee)** issued, due Aug 10 |
 | **w/o Mon Aug 10** | Menu implementation (target) | Client | Client implements approved changes; 90-day measurement window opens |
 | **Aug 10 – Sun Nov 8** | Phase V measurement window | Both | Treatment/control measurement vs. locked baseline, adjusted for documented seasonality + food inflation |
 | **Fri Nov 13** | Phase V deliverables | DDD | **Validation Deck** (P&L bridge, validated BPS lift, annualized cash impact) + **DDD Offset % metric**; monitoring tier decision (Essential / Professional / Executive) |
@@ -81,8 +81,8 @@ Comparable-segment restaurants/bars near each location — not board-game-cafe c
 
 | Invoice | Amount | Issued | Due |
 |---|---|---|---|
-| Invoice 1 (50%) | $4,950 | Jul 8 (CSA execution) | Jul 18 |
-| Invoice 2 (50%) | $4,950 | Jul 31 (final recommendations delivery) | Aug 10 |
+| Invoice 1 (50%) | TBA | Jul 8 (CSA execution) | Jul 18 |
+| Invoice 2 (50%) | TBA | Jul 31 (final recommendations delivery) | Aug 10 |
 
 *ACH or check · net 10 · 1.5%/month on late payments. On-site travel (1 trip, economy) billed at cost with prior approval, not included in the fee.*
 

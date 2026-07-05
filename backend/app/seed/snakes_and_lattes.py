@@ -266,10 +266,10 @@ ENGAGEMENT_PLAN = {
         {"name": "Client Portal Access", "category": "Data & Portal", "status": "12 months"},
     ],
     "terms": {
-        "project_fee": 9900,
+        "project_fee": "TBA",
         "payment_structure": "50% at execution / 50% at final delivery",
-        "invoice_1": 4950,
-        "invoice_2": 4950,
+        "invoice_1": "TBA",
+        "invoice_2": "TBA",
         "delivery_window": "2-3 weeks from complete data receipt",
         "onsite_review": "One HQ recommendation-review trip; economy travel billed at cost with prior approval.",
         "optional_monitoring": [
@@ -296,7 +296,7 @@ ENGAGEMENT_PLAN = {
         "milestones": [
             {"date": "2026-07-06", "name": "Proposal e-signed; NDA + Consulting Services Agreement sent (DocuSign)", "owner": "client", "type": "milestone"},
             {"date": "2026-07-08", "name": "Agreements executed - engagement start", "owner": "both", "type": "milestone"},
-            {"date": "2026-07-08", "name": "Invoice 1 issued: $4,950 (50%), due Jul 18", "owner": "ddd", "type": "payment"},
+            {"date": "2026-07-08", "name": "Invoice 1 issued: TBA (50% of project fee), due Jul 18", "owner": "ddd", "type": "payment"},
             {"date": "2026-07-09", "name": "Kickoff call: data package walkthrough, baseline period, seasonality parameters, competitor sets", "owner": "both", "type": "milestone"},
             {"date": "2026-07-10", "name": "Baseline & Validation Period Design document (for client signature)", "owner": "ddd", "type": "deliverable"},
             {"date": "2026-07-13", "name": "Complete client data package received - engagement clock starts", "owner": "client", "type": "milestone"},
@@ -306,7 +306,7 @@ ENGAGEMENT_PLAN = {
             {"date": "2026-07-27", "name": "Brand Strategic Plan + 3 Location Strategic Plans", "owner": "ddd", "type": "deliverable"},
             {"date": "2026-07-29", "name": "On-site recommendation review at client HQ (Randy; pre-approved economy travel at cost)", "owner": "both", "type": "milestone"},
             {"date": "2026-07-31", "name": "Approved action set: implementation checklist (PDF + XLSX) + final Brand & Location Pro Formas", "owner": "ddd", "type": "deliverable"},
-            {"date": "2026-07-31", "name": "Invoice 2 issued: $4,950 (50%), due Aug 10", "owner": "ddd", "type": "payment"},
+            {"date": "2026-07-31", "name": "Invoice 2 issued: TBA (50% of project fee), due Aug 10", "owner": "ddd", "type": "payment"},
             {"date": "2026-08-10", "name": "Client implements approved menu changes (target)", "owner": "client", "type": "milestone"},
             {"date": "2026-11-09", "name": "90-day post-implementation measurement window closes (Aug 10 - Nov 8)", "owner": "both", "type": "milestone"},
             {"date": "2026-11-13", "name": "Validation Deck: P&L bridge, treatment/control, validated BPS lift, Offset % metric, annualized cash impact", "owner": "ddd", "type": "deliverable"},
