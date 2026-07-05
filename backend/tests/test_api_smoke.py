@@ -1,4 +1,4 @@
-"""End-to-end smoke test: seeds the demo tenant into mongomock, then drives the
+"""End-to-end smoke test: seeds the demo tenant into in-memory SQLite, then drives the
 real FastAPI app through httpx to confirm the whole stack -- auth, gate,
 analysis, recommendations, exports -- works together, not just in isolation."""
 import pytest

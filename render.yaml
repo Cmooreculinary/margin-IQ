@@ -1,11 +1,10 @@
 # Render Blueprint -- one-click deploy of Margin IQ as a single web service
 # (FastAPI serving both the API and the built React portal).
 #
-# Render does not host MongoDB, so MONGO_URL must point at an external
-# instance -- the MongoDB Atlas free tier (M0) works fine:
-#   1. Create a free cluster at https://cloud.mongodb.com
-#   2. Add a database user + allow access from 0.0.0.0/0 (or Render's IPs)
-#   3. Paste the mongodb+srv:// connection string when Render prompts for MONGO_URL
+# The database is SQLite stored on a Render persistent disk mounted at /data,
+# so no external database service is needed. Note: persistent disks require a
+# paid instance type (the free plan has no disk -- data there is wiped on every
+# deploy/restart, which is fine for a throwaway demo but not a real engagement).
 #
 # SEED_DEMO=true seeds the Snakes & Lattes engagement demo tenant on first boot (only when
 # the database is empty -- it never touches existing data). The portal's
@@ -16,14 +15,16 @@ services:
   - type: web
     name: margin-iq
     runtime: docker
-    plan: free
+    plan: starter
     dockerfilePath: ./Dockerfile
     healthCheckPath: /health
+    disk:
+      name: margin-iq-data
+      mountPath: /data
+      sizeGB: 1
     envVars:
-      - key: MONGO_URL
-        sync: false # prompted at deploy time -- paste your Atlas connection string
-      - key: MONGO_DB_NAME
-        value: margin_iq
+      - key: SQLITE_PATH
+        value: /data/margin_iq.db
       - key: SEED_DEMO
         value: "true"
       - key: CORS_ORIGINS

@@ -1,12 +1,12 @@
 import pytest
-from mongomock_motor import AsyncMongoMockClient
 
-from app.db import set_test_database
+from app.db import SQLiteDatabase, set_test_database
 
 
 @pytest.fixture
 def db():
-    client = AsyncMongoMockClient()
-    database = client["margin_iq_test"]
+    database = SQLiteDatabase(":memory:")
     set_test_database(database)
-    return database
+    yield database
+    set_test_database(None)
+    database.close()

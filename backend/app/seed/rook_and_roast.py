@@ -4,7 +4,7 @@ realistic seasonality, a cover-fee PLU to exclude, and one deliberately
 labor-heavy 'food-cost mirage' item (Loaded Nachos) so the Prime Cost story
 demos itself without any manual setup.
 
-Run directly against a live Mongo instance:
+Run directly against the configured SQLite database:
     python -m app.seed.rook_and_roast
 
 Or call `await seed(db)` against an injected database (e.g. in tests).

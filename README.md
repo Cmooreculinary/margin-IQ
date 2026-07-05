@@ -39,7 +39,7 @@ requirements, deliverables, terms, and franchise-system test angle.
 ## Architecture
 
 ```
-backend/   FastAPI + Motor (MongoDB) — ingestion, prime cost engine, analysis,
+backend/   FastAPI + SQLite — ingestion, prime cost engine, analysis,
            recommendations/approval workflow, XLSX exports
 frontend/  React + TypeScript + Vite + Tailwind (Trench Design tokens)
 ```
@@ -88,14 +88,16 @@ The repo ships a `render.yaml` blueprint that deploys Margin IQ as a **single
 web service**: the production `Dockerfile` builds the React portal and serves
 it from the FastAPI process (same origin — no CORS, one free instance).
 
-1. **Database** — Render doesn't host MongoDB, so create a free MongoDB Atlas
-   cluster (M0) at https://cloud.mongodb.com: add a database user, allow
-   network access from `0.0.0.0/0` (or Render's outbound IPs), and copy the
-   `mongodb+srv://...` connection string.
+1. **Database** — none to provision: the app uses SQLite stored on a Render
+   persistent disk mounted at `/data` (configured in `render.yaml` via
+   `SQLITE_PATH=/data/margin_iq.db`). Persistent disks require a paid instance
+   type; on the free plan the database is wiped on every deploy/restart, which
+   is fine for a throwaway demo (`SEED_DEMO=true` reseeds it) but not for a
+   real engagement.
 2. **Deploy** — in the Render dashboard: **New → Blueprint**, connect this
    GitHub repo, pick the `claude/margin-iq-platform-7oov21` branch (or `main`
-   once merged). Render reads `render.yaml` and prompts for `MONGO_URL` —
-   paste the Atlas string.
+   once merged). Render reads `render.yaml`; no database credentials are
+   needed.
 3. **Demo data** — `SEED_DEMO=true` (the blueprint default) seeds the
    Snakes & Lattes US demo tenant on first boot when that tenant is missing.
    The deployed portal works immediately with the demo token. Set it to
@@ -103,8 +105,8 @@ it from the FastAPI process (same origin — no CORS, one free instance).
 4. Health check is `/health`; the portal is at `/`, interactive API docs at
    `/docs`.
 
-Free-tier note: Render free web services sleep after inactivity and Atlas M0
-is capped at 512 MB — both are fine for a demo; upgrade plans for production.
+Free-tier note: Render free web services sleep after inactivity and have no
+persistent disk — fine for a demo; upgrade plans for production.
 
 ## Running locally
 
@@ -121,7 +123,7 @@ docker compose up
 cd backend
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env   # point MONGO_URL at a running Mongo instance
+cp .env.example .env   # SQLITE_PATH defaults to ./margin_iq.db (created on first run)
 uvicorn app.main:app --reload
 
 # Seed the Snakes & Lattes demo tenant
@@ -147,8 +149,8 @@ python -m pytest -q
 Unit tests cover the prime cost engine, labor allocation, reconciliation,
 menu engineering, recommendations, and the pro forma ticker as pure functions
 (no DB required). `tests/test_seed_integration.py` and `tests/test_api_smoke.py`
-run the seed script and the full FastAPI app against an in-memory Mongo
-(`mongomock-motor`) to verify the whole stack together — auth, gate,
+run the seed script and the full FastAPI app against an in-memory SQLite
+database to verify the whole stack together — auth, gate,
 analysis, approval, and XLSX export.
 
 ## API surface
