@@ -10,7 +10,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.config import settings
-from app.routers import dashboard, engagement, exports, ingestion, items, locations, recommendations, validation
+from app.routers import dashboard, engagement, exports, ingestion, items, locations, recommendations, supply, validation
 
 # Built frontend (copied in by the production Docker image). When present, this
 # app serves the SPA too, so API + portal run as a single same-origin service.
@@ -22,6 +22,7 @@ async def lifespan(app: FastAPI):
     if settings.seed_demo:
         from app.db import get_database, verify_database_connection
         from app.seed.snakes_and_lattes import TENANT_SLUG, seed
+        from app.seed.supply_agent import seed_supply_agent
 
         await verify_database_connection()
         db = get_database()
@@ -31,6 +32,19 @@ async def lifespan(app: FastAPI):
         if await db.tenants.count_documents({"slug": TENANT_SLUG}) == 0:
             result = await seed(db)
             print(f"Seeded Snakes & Lattes demo tenant (token: {result['api_token']})", flush=True)
+            tenant_id = result["tenant_id"]
+        else:
+            tenant_id = (await db.tenants.find_one({"slug": TENANT_SLUG}))["_id"]
+
+        # Idempotent: (re)load Supply Agent comparison data only when missing,
+        # so a redeploy never clobbers rows an operator has since edited.
+        if await db.supplier_price_comparisons.count_documents({"tenant_id": tenant_id}) == 0:
+            counts = await seed_supply_agent(db, tenant_id)
+            print(
+                f"Seeded {counts['comparisons']} Supply Agent price comparison rows "
+                f"and {counts['shoreline_catalog']} Shoreline catalog rows",
+                flush=True,
+            )
     yield
 
 
@@ -60,6 +74,7 @@ api.include_router(dashboard.router)
 api.include_router(validation.router)
 api.include_router(exports.router)
 api.include_router(engagement.router)
+api.include_router(supply.router)
 app.include_router(api)
 
 

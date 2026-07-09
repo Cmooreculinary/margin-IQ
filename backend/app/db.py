@@ -51,4 +51,6 @@ COLLECTIONS = [
     "baselines",
     "validation_runs",
     "engagement_plans",
+    "supplier_price_comparisons",
+    "supplier_catalog_items",
 ]
