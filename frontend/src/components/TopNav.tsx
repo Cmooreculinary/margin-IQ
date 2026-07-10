@@ -7,6 +7,7 @@ const links = [
   { to: "/validation", label: "Validation" },
   { to: "/engagement", label: "Engagement Plan" },
   { to: "/documents", label: "Upload" },
+  { to: "/drive-import", label: "Drive" },
 ];
 
 export function TopNav() {

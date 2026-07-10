@@ -7,6 +7,7 @@ import { ApprovalQueuePage } from "./pages/ApprovalQueue";
 import { ValidationPage } from "./pages/Validation";
 import { EngagementPlanPage } from "./pages/EngagementPlan";
 import { DocumentUploadPage } from "./pages/DocumentUpload";
+import { DriveImportPage } from "./pages/DriveImport";
 
 export function App() {
   return (
@@ -21,6 +22,7 @@ export function App() {
           <Route path="/validation" element={<ValidationPage />} />
           <Route path="/engagement" element={<EngagementPlanPage />} />
           <Route path="/documents" element={<DocumentUploadPage />} />
+          <Route path="/drive-import" element={<DriveImportPage />} />
         </Routes>
       </main>
     </div>

@@ -286,7 +286,59 @@ export const api = {
     request<ValidationResult[]>(`/validation/runs${qs({ location_id: locationId })}`),
 
   engagementPlan: () => request<EngagementPlan>("/engagement/plan"),
+
+  // Google Drive
+  driveStatus: () => request<{ connected: boolean }>("/drive/status"),
+
+  driveConnect: () => request<{ auth_url: string }>("/drive/connect"),
+
+  driveDisconnect: () => request<{ disconnected: boolean }>("/drive/disconnect", { method: "DELETE" }),
+
+  driveFiles: (folderId?: string, pageToken?: string) =>
+    request<DriveListResult>(`/drive/files${qs({ folder_id: folderId, page_token: pageToken })}`),
+
+  driveSearch: (q: string) => request<{ files: DriveFile[] }>(`/drive/search${qs({ q })}`),
+
+  driveImport: (fileId: string, fileName: string) =>
+    request<DriveImportResult>("/drive/import", {
+      method: "POST",
+      body: JSON.stringify({ file_id: fileId, file_name: fileName }),
+    }),
+
+  driveImportBatch: (files: { file_id: string; file_name: string }[]) =>
+    request<{ results: DriveImportResult[] }>("/drive/import/batch", {
+      method: "POST",
+      body: JSON.stringify({ files }),
+    }),
 };
+
+// --- Google Drive types ---
+
+export interface DriveFile {
+  id: string;
+  name: string;
+  mimeType: string;
+  size?: string;
+  modifiedTime?: string;
+  isFolder: boolean;
+  importable: boolean;
+}
+
+export interface DriveListResult {
+  files: DriveFile[];
+  nextPageToken?: string;
+}
+
+export interface DriveImportResult {
+  document_type?: string;
+  summary?: string;
+  warnings?: string[];
+  records?: ScanRecord[];
+  filename?: string;
+  source?: string;
+  drive_file_id?: string;
+  error?: string;
+}
 
 /** XLSX exports require the tenant bearer token, so a plain <a href> won't
  * carry auth -- fetch as a blob and trigger the download manually. */
