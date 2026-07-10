@@ -543,7 +543,7 @@
     "category": "Kitchen/ Bar Supplies",
     "vendor_item": "Blue Nitrile Gloves - Ex-Large - RP- NGPF7004",
     "product": "Glove,Hybrid Vinyl-Poly XL (Tucson)",
-    "code": "10261200- BOX",
+    "code": "10261200",
     "packaging": "Box/100EA",
     "price_raw": "$3.68",
     "price": 3.68
@@ -552,7 +552,7 @@
     "category": "Kitchen/ Bar Supplies",
     "vendor_item": "Blue Nitrile Gloves- Large - RP-NGPF7003",
     "product": "Blue Nitrile Gloves- Large - RP-NGPF7003",
-    "code": "10099500- BOX",
+    "code": "10099500",
     "packaging": "Box/100EA",
     "price_raw": "$3.68",
     "price": 3.68
@@ -1074,7 +1074,7 @@
     "category": "To Go Supplies",
     "vendor_item": "Bamboo Stir Sticks 8\"",
     "product": "Bamboo Stir Sticks 8\"",
-    "code": "10201400- BOX",
+    "code": "10201400",
     "packaging": "Box/500EA",
     "price_raw": "$4.07",
     "price": 4.07

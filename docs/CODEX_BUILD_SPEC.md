@@ -209,8 +209,12 @@ publish guide prices, or we benchmark them from your invoices."
 The existing trusted-lines switching-savings KPI stays. Add per-category grouping (produce,
 proteins, dry goods…) derived from the guide's section headers so Susan sees WHERE Shamrock wins.
 
-### 5.7 Needs-review queue as a feature
-The ~15 weak/likely-wrong matches are currently just filtered out. Give them a review UI:
+### 5.7 Needs-review queue as a feature (the biggest single lever)
+Exact confidence distribution in the seed data (lead-audited 2026-07-10): High 5,
+Review 25 (plus 1 "Review - unit mismatch"), Weak 79, "Weak / likely wrong" 78. Only 23 rows
+currently clear the trusted bar with a computable diff — meaning **165 of 188 comparisons are
+sitting idle** until a human confirms or fixes the match. That makes this queue the largest
+untapped savings pool in the dataset, bigger than any single price finding. Give it a review UI:
 side-by-side item cards with an operator action (confirm match / reject / fix). Every resolved
 row moves into the trusted pool and updates the KPIs live. This turns our honesty about
 uncertainty into a visible workflow — exactly the accuracy story we're selling.
@@ -248,7 +252,29 @@ For `BrandDashboard`, `LocationDashboard`, `ItemAnalysisTable`, `ApprovalQueue`,
 6. Branch: work on feature branches, PR back to `main` as **draft** for approval. Never merge
    without lead + founder sign-off.
 
-## 8. Explicitly out of scope (do not build yet)
+## 8. Lead review gauntlet (what happens to your PR when it comes back)
+
+Know this in advance — build to survive it. Every returning PR gets, independently of anything
+you ship:
+
+1. **Independent recompute.** `backend/scripts/lead_audit.py` (the reviewer's own tool — you do
+   not modify it; extending it is the reviewer's job) re-derives every displayed number from the
+   seed JSONs and source PDFs. Any FAIL blocks the merge. Run it yourself before submitting:
+   `python backend/scripts/lead_audit.py` (PDF cross-checks activate when pdfplumber is
+   installed).
+2. **Number tracing.** Random sample of user-visible figures traced from rendered UI →
+   API response → Mongo document → seed JSON row → source PDF line. One untraceable number
+   fails the PR (Accuracy Contract §0.1).
+3. **Adversarial data.** The import gate (§4.2) is tested with hostile CSVs: line math off by a
+   cent, fee lines mislabeled as products, unknown SKUs, duplicate invoice numbers, totals that
+   don't foot. Silent acceptance of any of these fails the PR.
+4. **Empty-state sweep.** Fresh database, every route clicked: no NaN, no zeros-as-data, no
+   sample content, every empty state names its missing input (§6).
+5. **Regression guard.** The 23-row trusted pool, its by-supplier split, and the switching-savings
+   figure must be identical before/after your change unless the PR explicitly claims to change
+   them, with the source-level reason stated in the description.
+
+## 9. Explicitly out of scope (do not build yet)
 - Menu-engineering analytics on synthetic data (purged; waits for real Toast PMIX).
 - Multi-tenant onboarding flows, billing, auth changes.
 - Annualized projections from a single invoice (forbidden by §5.2 until ≥2 invoices).
