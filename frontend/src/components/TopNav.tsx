@@ -5,6 +5,7 @@ const links = [
   { to: "/items", label: "Menu Engineering" },
   { to: "/approvals", label: "Approval Queue" },
   { to: "/validation", label: "Validation" },
+  { to: "/supply-agent", label: "Supply Agent" },
   { to: "/engagement", label: "Engagement Plan" },
 ];
 

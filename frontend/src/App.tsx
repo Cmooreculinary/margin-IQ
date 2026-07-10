@@ -6,6 +6,7 @@ import { ItemAnalysisTablePage } from "./pages/ItemAnalysisTable";
 import { ApprovalQueuePage } from "./pages/ApprovalQueue";
 import { ValidationPage } from "./pages/Validation";
 import { EngagementPlanPage } from "./pages/EngagementPlan";
+import { SupplyAgentPage } from "./pages/SupplyAgent";
 
 export function App() {
   return (
@@ -19,6 +20,7 @@ export function App() {
           <Route path="/approvals" element={<ApprovalQueuePage />} />
           <Route path="/validation" element={<ValidationPage />} />
           <Route path="/engagement" element={<EngagementPlanPage />} />
+          <Route path="/supply-agent" element={<SupplyAgentPage />} />
         </Routes>
       </main>
     </div>
