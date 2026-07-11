@@ -53,14 +53,20 @@ def deployment_products() -> frozenset[str]:
 def tenant_products(tenant: dict) -> frozenset[str]:
     """Licensed products for one tenant, clamped to deployment capabilities.
 
-    Existing tenants without an explicit ``products`` field inherit the
-    deployment mode for backward compatibility. New production tenants should
-    always receive an explicit product list.
+    Existing tenants with no ``products`` field inherit the deployment mode for
+    backward compatibility. An explicit empty list means no product access.
+    New production tenants should always receive an explicit product list.
     """
     deployed = deployment_products()
-    configured = tenant.get("products")
-    if not configured:
+    if "products" not in tenant or tenant["products"] is None:
         return deployed
+
+    configured = tenant["products"]
+    if isinstance(configured, str):
+        configured = [configured]
+    if not isinstance(configured, (list, tuple, set, frozenset)):
+        return frozenset()
+
     return frozenset(str(product) for product in configured if product in deployed)
 
 
@@ -84,11 +90,12 @@ def product_manifest(tenant: dict) -> dict:
     """Frontend-safe capability manifest for navigation and product routing."""
     enabled = tenant_products(tenant)
     suite_enabled = all(product in enabled for product in PRODUCT_ORDER)
+    has_explicit_license = "products" in tenant and tenant["products"] is not None
     return {
         "deployment_mode": settings.product_mode,
         "tenant_id": str(tenant["_id"]),
         "tenant_name": tenant.get("name", ""),
-        "license_source": "tenant" if tenant.get("products") else "deployment_default",
+        "license_source": "tenant" if has_explicit_license else "deployment_default",
         "enabled_products": [product for product in PRODUCT_ORDER if product in enabled],
         "products": [
             {
