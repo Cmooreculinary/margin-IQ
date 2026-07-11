@@ -64,6 +64,20 @@ Requires the `ANTHROPIC_API_KEY` environment variable (an Anthropic API key
 with available credits); without it the scan endpoint returns 503 and the
 rest of the app works normally.
 
+**Google Drive integration** (`app/services/google_drive.py`, portal page
+`/drive-import`): connect your Google Drive via OAuth2, browse shared folders
+(e.g. "Tempe Food Purchase"), and import distributor files — invoices, order
+guides, price comparisons — directly into the document scanning pipeline.
+Files are downloaded from Drive, fed through Claude extraction, and presented
+for operator review before commit. Supports batch import of multiple files,
+folder navigation with breadcrumbs, and file search. Google Sheets are
+automatically exported as XLSX; PDF and image files are scanned directly;
+raw spreadsheets (.xlsx, .xls, .xlsm) prompt the operator to export as PDF
+first since AI vision works on rendered documents, not raw cell data.
+Requires `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` environment variables
+(Google OAuth2 credentials); without them the Drive endpoints return 503 and
+the rest of the app works normally.
+
 **Adapter-based ingestion**: `app/adapters/base.py` defines the POS adapter
 interface; `app/adapters/toast.py` is the v1 implementation. Square, Clover,
 and Lightspeed adapters drop in without touching the ingestion pipeline,
@@ -147,6 +161,26 @@ npm install
 npm run dev
 ```
 
+### Google Drive integration (optional)
+
+To enable importing files from Google Drive:
+
+1. Create a project in the [Google Cloud Console](https://console.cloud.google.com/).
+2. Enable the **Google Drive API**.
+3. Create an **OAuth 2.0 Client ID** (Web application type).
+4. Add `http://localhost:8000/api/drive/callback` as an authorized redirect URI.
+5. Set the environment variables in your `.env`:
+   ```
+   GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
+   GOOGLE_CLIENT_SECRET=your-client-secret
+   GOOGLE_REDIRECT_URI=http://localhost:8000/api/drive/callback
+   ```
+6. In the portal, navigate to **Drive** in the top nav and click **Connect Google Drive**.
+
+For production (Render), update `GOOGLE_REDIRECT_URI` to your deployed URL
+(e.g. `https://margin-iq.onrender.com/api/drive/callback`) and add it as an
+authorized redirect URI in the Google Cloud Console.
+
 The frontend defaults to the seed script's demo token
 (`snakes-lattes-demo-token`) via `src/lib/api.ts` so it works out of the box
 against a freshly seeded backend.
@@ -185,6 +219,14 @@ analysis, approval, and XLSX export.
 | `POST /validation/baseline/lock` | Lock the immutable, digitally-acknowledged 90-day baseline |
 | `POST /validation/measure` | Post-implementation measurement: P&L bridge, validated BPS lift, Offset % |
 | `GET /exports/analysis-deck.pdf` / `GET /exports/recommendations-deck.pdf` | Watermarked PDF deliverable decks |
+| `GET /drive/connect` | Start Google Drive OAuth2 flow — returns the consent URL |
+| `GET /drive/callback` | OAuth2 callback (Google redirects here after consent) |
+| `GET /drive/status` | Check if Google Drive is connected for the tenant |
+| `DELETE /drive/disconnect` | Remove stored Drive credentials |
+| `GET /drive/files` | Browse Drive files/folders (optional `folder_id` param) |
+| `GET /drive/search` | Search Drive files by name |
+| `POST /drive/import` | Download a single Drive file and extract data via Claude |
+| `POST /drive/import/batch` | Download and extract multiple Drive files |
 
 All API routes are served under the `/api` prefix (e.g. `/api/items`) so they
 never collide with portal client routes. Full interactive docs at `/docs`
