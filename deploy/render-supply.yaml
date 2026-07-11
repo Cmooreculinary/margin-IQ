@@ -1,23 +1,19 @@
-# Default BCA IQ Suite deployment. The same Docker image can also run either
-# product independently by setting PRODUCT_MODE to "margin" or "supply".
 services:
   - type: web
-    name: bca-iq-suite
+    name: supply-agent
     runtime: docker
     plan: starter
     dockerfilePath: ./Dockerfile
     healthCheckPath: /health
     disk:
-      name: bca-iq-suite-data
+      name: supply-agent-data
       mountPath: /data
       sizeGB: 1
     envVars:
       - key: SQLITE_PATH
-        value: /data/bca_iq_suite.db
+        value: /data/supply_agent.db
       - key: PRODUCT_MODE
-        value: suite
-      - key: ANTHROPIC_API_KEY
-        sync: false
+        value: supply
       - key: SEED_DEMO
         value: "true"
       - key: CORS_ORIGINS

@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic_settings import BaseSettings
 
 
@@ -8,6 +10,7 @@ class Settings(BaseSettings):
     default_reconciliation_tolerance_pct: float = 2.0
     seed_demo: bool = False
     cors_origins: str = "http://localhost:5173"
+    product_mode: Literal["margin", "supply", "suite"] = "suite"
 
     class Config:
         env_file = ".env"

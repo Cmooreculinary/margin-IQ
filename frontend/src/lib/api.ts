@@ -1,6 +1,5 @@
 // Dev: "/api" is proxied to the backend by Vite (see vite.config.ts).
-// Production (single combined service): the API is same-origin at root, so the
-// Render build sets VITE_API_BASE="" .
+// Production (single combined service): the API is same-origin under /api.
 const BASE_URL = import.meta.env.VITE_API_BASE ?? "/api";
 const TOKEN_STORAGE_KEY = "margin_iq_tenant_token";
 export const DEMO_TENANT_TOKEN = "snakes-lattes-demo-token";
@@ -34,6 +33,35 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
 function qs(params: Record<string, string | number | boolean | undefined>): string {
   const usable = Object.entries(params).filter(([, v]) => v !== undefined) as [string, string | number | boolean][];
   return usable.length ? `?${new URLSearchParams(usable.map(([k, v]) => [k, String(v)])).toString()}` : "";
+}
+
+export type ProductKey = "margin_iq" | "supply_agent";
+
+export interface ProductDefinition {
+  key: ProductKey;
+  name: string;
+  slug: string;
+  description: string;
+  standalone: boolean;
+  entry_path: string;
+  api_prefixes: string[];
+  enabled: boolean;
+}
+
+export interface ProductCapabilities {
+  deployment_mode: "margin" | "supply" | "suite";
+  tenant_id: string;
+  tenant_name: string;
+  license_source: "tenant" | "deployment_default";
+  enabled_products: ProductKey[];
+  products: ProductDefinition[];
+  suite_enabled: boolean;
+  integration: {
+    key: string;
+    enabled: boolean;
+    status: "contract_ready" | "requires_both_products";
+    description: string;
+  };
 }
 
 export interface Location {
@@ -115,7 +143,14 @@ export interface LocationDashboard {
   labor_allocation_pct: number;
   items_analyzed: number;
   quadrant_mix: Record<string, number>;
-  category_performance: Array<{ category: string; revenue: number; prime_cost_pct: number; cm_dollars: number; cm_pct: number; item_count: number }>;
+  category_performance: Array<{
+    category: string;
+    revenue: number;
+    prime_cost_pct: number;
+    cm_dollars: number;
+    cm_pct: number;
+    item_count: number;
+  }>;
 }
 
 export interface BaselineInfo {
@@ -190,12 +225,64 @@ export interface EngagementPlan {
     calendar?: {
       assumes: string;
       data_checklist: { item: string; due: string; status: "outstanding" | "received" }[];
-      milestones: { date: string; name: string; owner: "client" | "ddd" | "both"; type: "milestone" | "deliverable" | "payment" }[];
+      milestones: {
+        date: string;
+        name: string;
+        owner: "client" | "ddd" | "both";
+        type: "milestone" | "deliverable" | "payment";
+      }[];
     };
   };
 }
 
-// Demo periods match the seeded Snakes & Lattes dataset.
+export interface SupplyComparisonRow {
+  _id: string;
+  line: number;
+  us_product_number: string;
+  us_description: string;
+  us_pack: string;
+  us_price: number | null;
+  us_price_unit: string | null;
+  us_compare_unit: string | null;
+  us_qty_in_unit: number | null;
+  us_dollar_per_unit: number | null;
+  shamrock_product_number: string;
+  shamrock_description: string;
+  shamrock_brand: string | null;
+  shamrock_pack: string;
+  shamrock_price: number | null;
+  shamrock_price_unit: string | null;
+  shamrock_compare_unit: string | null;
+  shamrock_qty_in_unit: number | null;
+  shamrock_dollar_per_unit: number | null;
+  diff_dollar_per_unit: number | null;
+  diff_pct: number | null;
+  cheaper_supplier: "US Foods" | "Shamrock" | "Tie" | "Need review";
+  match_confidence: string;
+  match_score: number;
+  notes: string | null;
+}
+
+export interface SupplyCatalogItem {
+  _id: string;
+  supplier: string;
+  category: string | null;
+  vendor_item: string;
+  product: string;
+  code: string | null;
+  packaging: string | null;
+  price_raw: string | null;
+  price: number | null;
+}
+
+export interface SupplySummary {
+  total_items: number;
+  trusted_comparisons: number;
+  needs_review: number;
+  by_cheaper_supplier: Record<string, number>;
+  illustrative_switching_savings: number;
+}
+
 export const DEMO_PERIOD = { period_start: "2026-04-01T00:00:00", period_end: "2026-06-30T00:00:00" };
 export const DEMO_POST_PERIOD = { post_period_start: "2026-10-01T00:00:00", post_period_end: "2026-12-31T00:00:00" };
 
@@ -212,7 +299,6 @@ export interface ScanResult {
   filename?: string;
 }
 
-/** Multipart upload -- must NOT set Content-Type (the browser adds the boundary). */
 export async function scanDocument(file: File): Promise<ScanResult> {
   const form = new FormData();
   form.append("file", file);
@@ -229,50 +315,51 @@ export async function scanDocument(file: File): Promise<ScanResult> {
 }
 
 export const api = {
+  productCapabilities: () => request<ProductCapabilities>("/products"),
   listLocations: () => request<Location[]>("/locations"),
-
   commitScan: (records: ScanRecord[]) =>
     request<{ committed: Record<string, number>; total: number }>("/ingestion/scan/commit", {
       method: "POST",
       body: JSON.stringify({ records }),
     }),
-
-  listItems: (locationId: string, filters: Partial<{ category: string; daypart: string; quadrant: string; flagged_only: boolean }> = {}) =>
-    request<ItemRow[]>(`/items${qs({ location_id: locationId, ...DEMO_PERIOD, ...filters })}`),
-
+  listItems: (
+    locationId: string,
+    filters: Partial<{ category: string; daypart: string; quadrant: string; flagged_only: boolean }> = {}
+  ) => request<ItemRow[]>(`/items${qs({ location_id: locationId, ...DEMO_PERIOD, ...filters })}`),
   pareto: (locationId: string, metric: "revenue" | "cm_dollars" = "revenue") =>
-    request<{ metric: string; total: number; rows: { plu: string; name: string; value: number; cumulative_pct: number }[]; top_80_pct_plus: string[] }>(
-      `/items/pareto${qs({ location_id: locationId, metric, ...DEMO_PERIOD })}`
-    ),
-
+    request<{
+      metric: string;
+      total: number;
+      rows: { plu: string; name: string; value: number; cumulative_pct: number }[];
+      top_80_pct_plus: string[];
+    }>(`/items/pareto${qs({ location_id: locationId, metric, ...DEMO_PERIOD })}`),
   brandDashboard: () => request<BrandDashboard>(`/dashboard/brand${qs(DEMO_PERIOD)}`),
-
-  locationDashboard: (locationId: string) => request<LocationDashboard>(`/dashboard/location/${locationId}${qs(DEMO_PERIOD)}`),
-
+  locationDashboard: (locationId: string) =>
+    request<LocationDashboard>(`/dashboard/location/${locationId}${qs(DEMO_PERIOD)}`),
   listRecommendations: (params: Partial<{ location_id: string; status: string }> = {}) =>
     request<Recommendation[]>(`/recommendations${qs(params)}`),
-
-  decideRecommendation: (id: string, status: "approved" | "modified" | "denied", decidedBy: string, finalPrice?: number) =>
+  decideRecommendation: (
+    id: string,
+    status: "approved" | "modified" | "denied",
+    decidedBy: string,
+    finalPrice?: number
+  ) =>
     request<Recommendation>(`/recommendations/${id}/decide`, {
       method: "POST",
       body: JSON.stringify({ status, decided_by: decidedBy, final_price: finalPrice }),
     }),
-
   proForma: () => request<ProForma>("/recommendations/pro-forma"),
-
-  exportItemsXlsxUrl: (locationId: string) => `${BASE_URL}/items/export.xlsx${qs({ location_id: locationId, ...DEMO_PERIOD })}`,
+  exportItemsXlsxUrl: (locationId: string) =>
+    `${BASE_URL}/items/export.xlsx${qs({ location_id: locationId, ...DEMO_PERIOD })}`,
   exportChecklistXlsxUrl: () => `${BASE_URL}/recommendations/export-checklist.xlsx`,
   exportAnalysisDeckUrl: () => `${BASE_URL}/exports/analysis-deck.pdf${qs(DEMO_PERIOD)}`,
   exportRecommendationsDeckUrl: () => `${BASE_URL}/exports/recommendations-deck.pdf${qs(DEMO_PERIOD)}`,
-
   getBaseline: (locationId: string) => request<BaselineInfo>(`/validation/baseline/${locationId}`),
-
   lockBaseline: (locationId: string, signedBy: string) =>
     request<BaselineInfo>(`/validation/baseline/lock${qs({ location_id: locationId, ...DEMO_PERIOD })}`, {
       method: "POST",
       body: JSON.stringify({ signed_by: signedBy, acknowledged: true }),
     }),
-
   measureValidation: (
     locationId: string,
     assumptions: { food_inflation_pct: number; seasonal_index_baseline: number; seasonal_index_post: number }
@@ -281,15 +368,16 @@ export const api = {
       method: "POST",
       body: JSON.stringify(assumptions),
     }),
-
   listValidationRuns: (locationId?: string) =>
     request<ValidationResult[]>(`/validation/runs${qs({ location_id: locationId })}`),
-
   engagementPlan: () => request<EngagementPlan>("/engagement/plan"),
+  supplyComparisons: (filters: Partial<{ cheaper_supplier: string; trusted_only: boolean }> = {}) =>
+    request<SupplyComparisonRow[]>(`/supply/comparisons${qs(filters)}`),
+  supplySummary: () => request<SupplySummary>("/supply/summary"),
+  supplyCatalog: (filters: Partial<{ supplier: string; category: string }> = {}) =>
+    request<SupplyCatalogItem[]>(`/supply/catalog${qs(filters)}`),
 };
 
-/** XLSX exports require the tenant bearer token, so a plain <a href> won't
- * carry auth -- fetch as a blob and trigger the download manually. */
 export async function downloadAuthorized(url: string, filename: string) {
   const res = await fetch(url, { headers: { Authorization: `Bearer ${getTenantToken()}` } });
   if (!res.ok) throw new Error(`Export failed: ${res.status}`);
