@@ -13,6 +13,7 @@ def test_tenant_products_are_explicit_and_clamped(monkeypatch):
     monkeypatch.setattr(settings, "product_mode", "suite")
     assert tenant_products({"products": [MARGIN_IQ]}) == frozenset({MARGIN_IQ})
     assert tenant_products({"products": [SUPPLY_AGENT]}) == frozenset({SUPPLY_AGENT})
+    assert tenant_products({"products": []}) == frozenset()
     assert tenant_products({"products": [MARGIN_IQ, SUPPLY_AGENT, "unknown"]}) == frozenset(
         {MARGIN_IQ, SUPPLY_AGENT}
     )
