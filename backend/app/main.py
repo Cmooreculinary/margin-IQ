@@ -10,7 +10,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.config import settings
-from app.routers import dashboard, engagement, exports, ingestion, items, locations, recommendations, scan, validation
+from app.routers import dashboard, drive, engagement, exports, ingestion, items, locations, recommendations, scan, validation
 
 # Built frontend (copied in by the production Docker image). When present, this
 # app serves the SPA too, so API + portal run as a single same-origin service.
@@ -55,6 +55,7 @@ api = APIRouter(prefix="/api")
 api.include_router(locations.router)
 api.include_router(ingestion.router)
 api.include_router(scan.router)
+api.include_router(drive.router)
 api.include_router(items.router)
 api.include_router(recommendations.router)
 api.include_router(dashboard.router)

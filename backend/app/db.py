@@ -368,4 +368,5 @@ COLLECTIONS = [
     "baselines",
     "validation_runs",
     "engagement_plans",
+    "drive_credentials",
 ]
