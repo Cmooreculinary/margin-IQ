@@ -1,0 +1,1163 @@
+[
+  {
+    "category": "Cleaning Supplies",
+    "vendor_item": "12-Esp12-20 Cafiza Espresso Cleaner Powder -20OZ",
+    "product": "12-Esp12-20 Cafiza Espresso Cleaner Powder -20OZ",
+    "code": "10148400",
+    "packaging": "EA/20OZ",
+    "price_raw": "$6.80",
+    "price": 6.8
+  },
+  {
+    "category": "Cleaning Supplies",
+    "vendor_item": "Chemcor Foaming Handsoap",
+    "product": "Chemcor Foaming Handsoap",
+    "code": "10037600",
+    "packaging": "GAL",
+    "price_raw": "$15.01",
+    "price": 15.01
+  },
+  {
+    "category": "Cleaning Supplies",
+    "vendor_item": "J1040001 Premier Essentials White Dinner Napkins",
+    "product": "J1040001 Premier Essentials White Dinner Napkins",
+    "code": "10386600",
+    "packaging": "Case/3000EA",
+    "price_raw": "$45.60",
+    "price": 45.6
+  },
+  {
+    "category": "Cleaning Supplies",
+    "vendor_item": "Toilet Seat Covers Rp-Hftsc",
+    "product": "Toilet Seat Covers Rp-Hftsc",
+    "code": "10100000",
+    "packaging": "EA",
+    "price_raw": "$2.18",
+    "price": 2.18
+  },
+  {
+    "category": "Dairy (Milk, Eggs...)",
+    "vendor_item": "04320 Pacific Oat Barista -32OZ -12/Cs",
+    "product": "Barista Oat Milk (Chicago)",
+    "code": "10146300",
+    "packaging": "Case/12/32OZ",
+    "price_raw": "$38.50",
+    "price": 38.5
+  },
+  {
+    "category": "Dairy (Milk, Eggs...)",
+    "vendor_item": "Califia - Almond Barista Milk",
+    "product": "Almond Milk (Tempe)",
+    "code": "10082800",
+    "packaging": "Case/12/32OZ Btl",
+    "price_raw": "$39.15",
+    "price": 39.15
+  },
+  {
+    "category": "Dairy (Milk, Eggs...)",
+    "vendor_item": "Califia Barista Blend Oat Milk 32Oz",
+    "product": "Oat Milk (Tempe)",
+    "code": "10225400",
+    "packaging": "Case/12/32OZ",
+    "price_raw": "$39.15",
+    "price": 39.15
+  },
+  {
+    "category": "Dairy (Milk, Eggs...)",
+    "vendor_item": "Califia - Oat Barista Milk - 12/32OZ",
+    "product": "Oat Milk (Tempe)",
+    "code": "10225400_12",
+    "packaging": "Case/6/32OZ, Case/12/32OZ",
+    "price_raw": "$17.88, $39.15",
+    "price": 17.88
+  },
+  {
+    "category": "Dairy (Milk, Eggs...)",
+    "vendor_item": "Ghost Town -Barsita Oat Milk -32Oz -6/CS",
+    "product": "Barista Oat Milk (Chicago)",
+    "code": "10419700",
+    "packaging": "Case/6/32OZ",
+    "price_raw": "$21.85",
+    "price": 21.85
+  },
+  {
+    "category": "Dry Goods (groceries)",
+    "vendor_item": "41265 Ghirardelli White Chocolate Sauce 87.3oz Btl",
+    "product": "White Chocolate Sauce (Tempe)",
+    "code": "10038800",
+    "packaging": "87.3OZ Btl",
+    "price_raw": "$23.77",
+    "price": 23.77
+  },
+  {
+    "category": "Dry Goods (groceries)",
+    "vendor_item": "62057 Ghirardelli Black Label Chocolate Sauce 87.3OZ Bottle",
+    "product": "Ghirardelli Chocolate (Tempe)",
+    "code": "10039400",
+    "packaging": "87.3OZ Btl",
+    "price_raw": "$23.77",
+    "price": 23.77
+  },
+  {
+    "category": "Dry Goods (groceries)",
+    "vendor_item": "Ghirardelli Sauce Pump",
+    "product": "Sauce, Chocolate",
+    "code": "10039600",
+    "packaging": "EA",
+    "price_raw": "$13.00",
+    "price": 13.0
+  },
+  {
+    "category": "Dry Goods (groceries)",
+    "vendor_item": "Ghirarelli Caramel Sauce 90.4oz Btl",
+    "product": "Ghirardelli Caramel Sauce (Tempe)",
+    "code": "10039200",
+    "packaging": "90.4OZ Btl",
+    "price_raw": "$23.77",
+    "price": 23.77
+  },
+  {
+    "category": "Dry Goods (groceries)",
+    "vendor_item": "Monin Cucumber Syrup 1.0L",
+    "product": "Syrup, Cucumber",
+    "code": "10018900",
+    "packaging": "1L Btl",
+    "price_raw": "$9.05",
+    "price": 9.05
+  },
+  {
+    "category": "Dry Goods (groceries)",
+    "vendor_item": "Monin Maple Spice",
+    "product": "Spice, Maple (Tucson & Tempe)",
+    "code": "10289300",
+    "packaging": "750ML Btl",
+    "price_raw": "$6.92",
+    "price": 6.92
+  },
+  {
+    "category": "Dry Goods (groceries)",
+    "vendor_item": "Monin-Passionfruit Puree-1 btl",
+    "product": "Puree, Passion Fruit",
+    "code": "100063",
+    "packaging": "Btl",
+    "price_raw": "$18.67",
+    "price": 18.67
+  },
+  {
+    "category": "Dry Goods (groceries)",
+    "vendor_item": "Monin Spiced Brown Sugar - 750Ml",
+    "product": "Spiced Brown Sugar 750ML",
+    "code": "10289600",
+    "packaging": "750ML Btl",
+    "price_raw": "$6.30",
+    "price": 6.3
+  },
+  {
+    "category": "Job Supplies",
+    "vendor_item": "2-Ply Toilet Paper-433350TP",
+    "product": "2-Ply Toilet Paper-433350TP",
+    "code": "10442100",
+    "packaging": "Case/96EA",
+    "price_raw": "$58.96",
+    "price": 58.96
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "1883 Salted Caramel Syrup 1 Liter",
+    "product": "Syrup, Caramel",
+    "code": "10081400",
+    "packaging": "1L Btl",
+    "price_raw": "$8.10",
+    "price": 8.1
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "1883 Vanilla Syrup 1-Liter",
+    "product": "Syrup, Vanilla (Tempe)",
+    "code": "10082400",
+    "packaging": "1L Btl",
+    "price_raw": "$8.10",
+    "price": 8.1
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Ag64d Holy Kakow Agave Syrup Organic 64 Oz",
+    "product": "Syrup, Maple",
+    "code": "10195500",
+    "packaging": "64OZ Btl",
+    "price_raw": "$31.43",
+    "price": 31.43
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monia Coconut Syrup",
+    "product": "Coconut Syrup (Tucson & Tempe)",
+    "code": "10018800",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.67",
+    "price": 7.67
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Blood Orange Syrup 1L",
+    "product": "Syrup, Blood Orange",
+    "code": "10100800",
+    "packaging": "1L Btl",
+    "price_raw": "$9.05",
+    "price": 9.05
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Blueberry Syrup",
+    "product": "Blueberry Syrup (Tucson & Tempe)",
+    "code": "10018300",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.77",
+    "price": 7.77
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Blue Curacao Syrup - 750ml",
+    "product": "Monin Blue Curacao Syrup (Tempe)",
+    "code": "10275800",
+    "packaging": "750ML Btl",
+    "price_raw": "$6.49",
+    "price": 6.49
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Blue Raspberry Syrup",
+    "product": "Monin Blue Raspberry Syrup",
+    "code": "10321700",
+    "packaging": "1Lt Btl",
+    "price_raw": "$10.88",
+    "price": 10.88
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Caramel Syrup 750Ml",
+    "product": "Monin Caramel Syrup (Tempe)",
+    "code": "10018600",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.67",
+    "price": 7.67
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Carmel apple Butter",
+    "product": "Syrup, Caramel Apple Butter",
+    "code": "10337800",
+    "packaging": "750ML Btl",
+    "price_raw": "$6.49",
+    "price": 6.49
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Cherry Syrup",
+    "product": "Syrup, Cherry",
+    "code": "10100700",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.77",
+    "price": 7.77
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Desert Pear Syrup",
+    "product": "Syrup, Dessert Pear",
+    "code": "10310700",
+    "packaging": "1.0L Btl",
+    "price_raw": "$10.88",
+    "price": 10.88
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin DragonFruit Syrup-1Litre",
+    "product": "Syrup, Dragon Fruit (Tucson & Tempe)",
+    "code": "10425800",
+    "packaging": "1L Btl",
+    "price_raw": "$10.88",
+    "price": 10.88
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Hazelnut Syrup",
+    "product": "Monin Hazelnut (Tucson & Tempe)",
+    "code": "10019500",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.67",
+    "price": 7.67
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Hibiscus Syrup-1 Liter",
+    "product": "Hibiscus Syrup (Tempe)",
+    "code": "10256200",
+    "packaging": "1L Btl",
+    "price_raw": "$9.82",
+    "price": 9.82
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Levender Syrup 750ML",
+    "product": "Monin Lavender Syrup (Tucson & Tempe)",
+    "code": "10019800",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.67",
+    "price": 7.67
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Mango Syrup 750Ml",
+    "product": "Monin Mango (Tempe)",
+    "code": "10020100",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.77",
+    "price": 7.77
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Passion Fruit syrup",
+    "product": "Monin Passion Fruit (Tucson & Tempe)",
+    "code": "10197100",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.77",
+    "price": 7.77
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Peppermint Syrup 750ML Btl",
+    "product": "Monin Peppermint (Tempe)",
+    "code": "10020800",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.67",
+    "price": 7.67
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Pumpkin Spice Syrup",
+    "product": "Monin Pumpkin Spice Syrup (Tucson & Tempe)",
+    "code": "10021200",
+    "packaging": "750ML Btl",
+    "price_raw": "$6.49",
+    "price": 6.49
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Raspberry Syrup 750Ml",
+    "product": "Monin Blue Raspberry Syrup",
+    "code": "10021300",
+    "packaging": "750ML Btl",
+    "price_raw": "$6.49",
+    "price": 6.49
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Rose Syrup 750ML",
+    "product": "Monin Rose (Tempe)",
+    "code": "10021400",
+    "packaging": "750ML Btl",
+    "price_raw": "$6.49",
+    "price": 6.49
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Sf Caramel Syrup 750ml",
+    "product": "Caramel Syrup SF (Tucson & Tempe)",
+    "code": "10021700",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.67",
+    "price": 7.67
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Sf Vanilla Syrup",
+    "product": "Sugar Free Vanilla Syrup (Tempe)",
+    "code": "100839",
+    "packaging": "1L Btl",
+    "price_raw": "$9.05",
+    "price": 9.05
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin SF Vanilla Syrup",
+    "product": "Sugar Free Vanilla Syrup (Tempe)",
+    "code": "10022200",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.43",
+    "price": 7.43
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Toasted Marshallow",
+    "product": "Monin Toasted Marshmallow (Tempe & Tucson)",
+    "code": "10098800",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.67",
+    "price": 7.67
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Vanilla Syrup 750ml",
+    "product": "Monin Vanilla (Tucson & Tempe)",
+    "code": "10022800",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.67",
+    "price": 7.67
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Monin Watermelon Syrup",
+    "product": "Monin Watermelon (Tempe)",
+    "code": "10023100",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.67",
+    "price": 7.67
+  },
+  {
+    "category": "Juices for Liquor",
+    "vendor_item": "Rose Syrup 1L",
+    "product": "Rose Syrup 1L",
+    "code": "10081300",
+    "packaging": "1L Btl",
+    "price_raw": "$8.10",
+    "price": 8.1
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "10Pizbr 10\" Brown Pizza Box w/Stock Print",
+    "product": "10Pizbr 10\" Brown Pizza Box w/Stock Print",
+    "code": "10187700",
+    "packaging": "Box",
+    "price_raw": "$17.52",
+    "price": 17.52
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "14Pizbr 14\" Brown Pizza Box W/Stock Print",
+    "product": "14Pizbr 14\" Brown Pizza Box W/Stock Print",
+    "code": "10187900",
+    "packaging": "Box",
+    "price_raw": "$36.75",
+    "price": 36.75
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "18 Oz Clear Salad Bowl",
+    "product": "Clear Salad Bowl",
+    "code": "10262900",
+    "packaging": "Case/150EA",
+    "price_raw": "$35.51",
+    "price": 35.51
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "2W Karat white 10X10Premum Napkin",
+    "product": "2W Karat white 10X10Premum Napkin",
+    "code": "10113200",
+    "packaging": "Case/3000EA",
+    "price_raw": "$48.46",
+    "price": 48.46
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "575Jbuvs 5.75\" Black Jumbo Unwrapped Straw",
+    "product": "575Jbuvs 5.75\" Black Jumbo Unwrapped Straw",
+    "code": "10037900",
+    "packaging": "Case/2500EA",
+    "price_raw": "$14.78",
+    "price": 14.78
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "9'' Jumbo Roll TP",
+    "product": "9'' Jumbo Roll TP",
+    "code": "10017500",
+    "packaging": "Case/12EA",
+    "price_raw": "$32.31",
+    "price": 32.31
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "9\" Jumbo Toilet Paper - Right Choice - 12/ CS",
+    "product": "9\" Jumbo Toilet Paper - Right Choice - 12/ CS",
+    "code": "10120500",
+    "packaging": "Case/12EA",
+    "price_raw": "$48.94",
+    "price": 48.94
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "BGSH108 -9X6 Hinged fiber",
+    "product": "9X6 Hinged fiber",
+    "code": "10307500",
+    "packaging": "Case/500EA",
+    "price_raw": "$131.33",
+    "price": 131.33
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Bgsh112-9x9 1-Conp Hinged Fiber Box- Harvest",
+    "product": "Bgsh112-9x9 1-Conp Hinged Fiber Box- Harvest",
+    "code": "10307300",
+    "packaging": "Case/200EA",
+    "price_raw": "$51.51",
+    "price": 51.51
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Bgsp110 - 9\" Round Fiber Plate - Hakoware- 500/Cs",
+    "product": "Bgsp110 - 9\" Round Fiber Plate - Hakoware- 500/Cs",
+    "code": "10306600",
+    "packaging": "Case/500EA",
+    "price_raw": "$44.50",
+    "price": 44.5
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Black Nitrile Gloves - Exlarge - Rp-Begn5-XL",
+    "product": "Black Nitrile Gloves - Exlarge - Rp-Begn5-XL",
+    "code": "10440500",
+    "packaging": "Box/100EA",
+    "price_raw": "$5.79",
+    "price": 5.79
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Black Nitrile Gloves - Large",
+    "product": "Black Nitrile Gloves - Large - Rp-Begn5-L",
+    "code": "10440400",
+    "packaging": "Box/100EA",
+    "price_raw": "$5.79",
+    "price": 5.79
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Black Nitrile Gloves-Medium-Rp-Beg5-M",
+    "product": "Black Nitrile Gloves-Medium-Rp-Beg5-M",
+    "code": "10440300",
+    "packaging": "Box/100EA",
+    "price_raw": "$5.79",
+    "price": 5.79
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Blue Nitrile Gloves - Ex-Large - RP- NGPF7004",
+    "product": "Glove,Hybrid Vinyl-Poly XL (Tucson)",
+    "code": "10261200",
+    "packaging": "Box/100EA",
+    "price_raw": "$3.68",
+    "price": 3.68
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Blue Nitrile Gloves- Large - RP-NGPF7003",
+    "product": "Blue Nitrile Gloves- Large - RP-NGPF7003",
+    "code": "10099500",
+    "packaging": "Box/100EA",
+    "price_raw": "$3.68",
+    "price": 3.68
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "BS515L - 5.75\" Black Cocktail Straw",
+    "product": "BS515L - 5.75\" Black Cocktail Straw",
+    "code": "10401500",
+    "packaging": "Case/2500EA",
+    "price_raw": "$26.14",
+    "price": 26.14
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "C-KDL516B Pp Black Sipper Lid",
+    "product": "C-KDL516B PP Black Sipper LId",
+    "code": "10008300",
+    "packaging": "Case/1000EA",
+    "price_raw": "$40.47",
+    "price": 40.47
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "C-Kic512W-12OZ White Double Wall Hot Cups 500/Cs",
+    "product": "C-Kic512W-12OZ White Double Wall Hot Cups 500/Cs",
+    "code": "10272200",
+    "packaging": "Case/500/12OZ",
+    "price_raw": "$78.75",
+    "price": 78.75
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "DHG - MFT-4000K - Kraft Multifold Paper Towels",
+    "product": "Re-Met-K- Kraft Multifold",
+    "code": "10104000",
+    "packaging": "Case/4000EA",
+    "price_raw": "$21.75",
+    "price": 21.75
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Flat Lids For 12-24Oz, Pet Cups",
+    "product": "Pet Karat Flat Lids",
+    "code": "10110700",
+    "packaging": "Case/1000EA",
+    "price_raw": "$33.11",
+    "price": 33.11
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Flat Lids For PET Cups",
+    "product": "Flat Lids For PET Cups",
+    "code": "10403900",
+    "packaging": "Case/1000EA",
+    "price_raw": "$33.05",
+    "price": 33.05
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Fl- Pl200- Pet Lid For 1/1.5/2 Oz Portion Cups 2500/Cs",
+    "product": "Fl- Pl200- Pet Lid For 1/1.5/2 Oz Portion Cups 2500/Cs",
+    "code": "10014000",
+    "packaging": "Case/2500EA",
+    "price_raw": "$28.13",
+    "price": 28.13
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Fp-Dc32-Ppu Deli Containers Pp",
+    "product": "Fp-Dc32-Ppu Deli Containers Pp",
+    "code": "10012100",
+    "packaging": "Case/500/32OZ",
+    "price_raw": "$64.62",
+    "price": 64.62
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Fp-Dcl117-Pp Deli Container lids",
+    "product": "Fp-Dcl117-Pp Deli Container",
+    "code": "10012200",
+    "packaging": "Case/500EA",
+    "price_raw": "$29.88",
+    "price": 29.88
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Fp-Hc99pet-1c 9*9 Pet Hinged",
+    "product": "Fp-Hc99pet-1c 9*9 Pet Hinged",
+    "code": "10012700",
+    "packaging": "Case/200EA",
+    "price_raw": "$57.24",
+    "price": 57.24
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Fp-p200-Pp 2 OZ Portion Cups Clear",
+    "product": "Fp-p200-Pp 2 OZ Portion Cups Clear",
+    "code": "10013100",
+    "packaging": "Case/500EA",
+    "price_raw": "$31.91",
+    "price": 31.91
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "H124-Premium White Multifold -4000/CS",
+    "product": "H124-Premium White Multifold -4000/CS",
+    "code": "10253000",
+    "packaging": "Case/4000EA",
+    "price_raw": "$41.94",
+    "price": 41.94
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "H242408N Can Liners 24x24 08 Mcron Natural",
+    "product": "H242408N Can Liners 24x24 08 Mcron Natural",
+    "code": "10049600",
+    "packaging": "Case/1000EA",
+    "price_raw": "$29.27",
+    "price": 29.27
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "HD Tshirt Printed",
+    "product": "HD Tshirt Printed",
+    "code": "10180500",
+    "packaging": "Case/925EA",
+    "price_raw": "$30.00",
+    "price": 30.0
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "HWPS6BK Heavy Weight PS 6 Piece Black Cutlery Kit",
+    "product": "HWPS6BK Heavy Weight PS 6 Piece Black Cutlery Kit",
+    "code": "10181200",
+    "packaging": "Case/250EA",
+    "price_raw": "$28.95",
+    "price": 28.95
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Karat Multifold",
+    "product": "Karat Multifold",
+    "code": "10386000",
+    "packaging": "Case/4000EA",
+    "price_raw": "$28.99",
+    "price": 28.99
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "KC16 - 160z PET Cold Cups 1,000/cs",
+    "product": "16OZ Clear Pet Karat Cold Cups",
+    "code": "10110900",
+    "packaging": "Case/1000EA",
+    "price_raw": "$59.61",
+    "price": 59.61
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Kn-B9595-2Blk Karat",
+    "product": "Kn-B9595-2Blk Karat",
+    "code": "10103900",
+    "packaging": "Case/1000EA",
+    "price_raw": "$23.10",
+    "price": 23.1
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "LR303610K Can Liners 30x36 1.0 Mil Black 250/cs Roll",
+    "product": "Lr303610K Can Liners 30x36 1.0 Mil Black 250/cs Roll",
+    "code": "10050100",
+    "packaging": "Case/250EA",
+    "price_raw": "$35.22",
+    "price": 35.22
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "LR404620K Can Liners 40x46 2.0 mil Black 100/cs Roll",
+    "product": "LR404620K Can Liners 40x46 2.0 mil Black 100/cs Roll",
+    "code": "10197800",
+    "packaging": "Case/100EA",
+    "price_raw": "$47.71",
+    "price": 47.71
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Misc Tax",
+    "product": "Misc Tax",
+    "code": "",
+    "packaging": "Charges",
+    "price_raw": "$3.99",
+    "price": 3.99
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Pprm01-1000 - Kraft Sleeves - Harvest Pack",
+    "product": "Pprm01-1000 - Kraft Sleeves - Harvest Pack",
+    "code": "10313400",
+    "packaging": "Case/1000EA",
+    "price_raw": "$30.10",
+    "price": 30.1
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "RP- BN85001V Royalty bev Napkin 1 Ply 4000/CS",
+    "product": "RP- BN85001V Royalty bev Napkin 1 Ply 4000/CS",
+    "code": "10383000",
+    "packaging": "Case/4000EA",
+    "price_raw": "$23.67",
+    "price": 23.67
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Rp- Dn30002v 2-Ply White Dinner Napkins",
+    "product": "Rp- Dn30002v 2-Ply White Dinner Napkins",
+    "code": "10011400",
+    "packaging": "Case/3000EA",
+    "price_raw": "$40.69",
+    "price": 40.69
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Ss-sw12-90-w - 12Oz White Hot Cups - 1, 000/Cs",
+    "product": "C-K512W 12OZ Hot Cup White",
+    "code": "10385000",
+    "packaging": "Case/1000EA",
+    "price_raw": "$73.28",
+    "price": 73.28
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Stainless Steel Scrubber",
+    "product": "Stainless Steel Scrubber",
+    "code": "10169100",
+    "packaging": "Pack/12EA",
+    "price_raw": "$8.13",
+    "price": 8.13
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Stngt-0722- 7.75\" Giant Black Straws - Wrapped",
+    "product": "Stngt-0722- 7.75\" Giant Black Straws - Wrapped",
+    "code": "10288000",
+    "packaging": "Box/300EA",
+    "price_raw": "$3.29",
+    "price": 3.29
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Strawless Lids",
+    "product": "Petsl Strawless Lids",
+    "code": "100153",
+    "packaging": "Case/1000EA",
+    "price_raw": "$33.00",
+    "price": 33.0
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Syrup Pump",
+    "product": "Syrup Pump",
+    "code": "10092200",
+    "packaging": "1L Btl",
+    "price_raw": "$2.95",
+    "price": 2.95
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "U2020B Karat Ps Extra Heavy Weight Fork Black 1000Ct",
+    "product": "U2020B Karat Ps Extra Heavy Weight Fork Black 1000Ct",
+    "code": "10088900",
+    "packaging": "Case/1000EA",
+    "price_raw": "$29.72",
+    "price": 29.72
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "UB Whip Cream Charge",
+    "product": "UB Whip Cream Charge",
+    "code": "10153400",
+    "packaging": "Case/24EA",
+    "price_raw": "$15.15",
+    "price": 15.15
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "UG775BLK/512B - 7.75\" Giant Black Straw , Unwrapped - 1500/CS",
+    "product": "UG775BLK/512B - 7.75\" Giant Black Straw , Unwrapped - 1500/CS",
+    "code": "100183",
+    "packaging": "Case/1500EA",
+    "price_raw": "$18.93",
+    "price": 18.93
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "White Sipper Lid For 10-24Oz-1000/Cs",
+    "product": "White Sipper Lid For 10-24Oz-1000/Cs",
+    "code": "10008200",
+    "packaging": "Case/1000EA",
+    "price_raw": "$44.32",
+    "price": 44.32
+  },
+  {
+    "category": "Kitchen/ Bar Supplies",
+    "vendor_item": "Wood Stir Stricks 7.5\"",
+    "product": "Wood Stir Stricks 7.5\"",
+    "code": "10201400-CS",
+    "packaging": "Case/5000EA",
+    "price_raw": "$49.30",
+    "price": 49.3
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Califia - Coconut Barista Milk -32oz -12 cs",
+    "product": "Coconut Milk (Tempe)",
+    "code": "100260",
+    "packaging": "Case/12/32OZ",
+    "price_raw": "$39.80",
+    "price": 39.8
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Matchabar - Matcha- 1KG Bag",
+    "product": "Matcha Powder (Tempe)",
+    "code": "100210",
+    "packaging": "Bag/1KG",
+    "price_raw": "$190.00",
+    "price": 190.0
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin Caramel Sauce",
+    "product": "Caramel Sauce (Tucson)",
+    "code": "10019100",
+    "packaging": "EA/64OZ Btl",
+    "price_raw": "$15.63",
+    "price": 15.63
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin Chai Tea Converte",
+    "product": "Monin Chai (Tempe)",
+    "code": "10338000",
+    "packaging": "750ML Btl",
+    "price_raw": "$7.05",
+    "price": 7.05
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin Dark Chocolate Sauce",
+    "product": "Sauce, Chocolate (Tucson)",
+    "code": "10019000",
+    "packaging": "1.8L Btl",
+    "price_raw": "$15.45",
+    "price": 15.45
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin Gingerbread Syrup 750 ML",
+    "product": "Syrup, Gingerbread",
+    "code": "10019200",
+    "packaging": "750ML Btl",
+    "price_raw": "$6.49",
+    "price": 6.49
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin Golden Turmeric -750ml",
+    "product": "Syrup, Tumeric",
+    "code": "10339600",
+    "packaging": "750ML Btl",
+    "price_raw": "$6.49",
+    "price": 6.49
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin Green Mint Syrup 750ml",
+    "product": "Monin Green Mint Syrup (Tempe)",
+    "code": "10019300",
+    "packaging": "750ML Btl",
+    "price_raw": "$6.49",
+    "price": 6.49
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin Peach Fruit Puree 1L",
+    "product": "Puree, Peach (Tucson & Tempe)",
+    "code": "10106000",
+    "packaging": "1L Btl",
+    "price_raw": "$15.34",
+    "price": 15.34
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin Peanut Butter Syrup 750ml",
+    "product": "Syrup, Peanut Butter",
+    "code": "10020700",
+    "packaging": "750ML Btl",
+    "price_raw": "$6.49",
+    "price": 6.49
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin Puree - Pumpkin Spice 1L Bottle",
+    "product": "Puree, Spiced Pumpkin",
+    "code": "10327600",
+    "packaging": "1L Btl",
+    "price_raw": "$13.89",
+    "price": 13.89
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin Raspberry Fruit Puree",
+    "product": "Monin Raspberry Puree (Tucson & Tempe)",
+    "code": "10313900",
+    "packaging": "1L Btl",
+    "price_raw": "$16.46",
+    "price": 16.46
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin Strawberry Fruit Pure",
+    "product": "Monin Strawberry Puree (Tucson & Tempe)",
+    "code": "10105900",
+    "packaging": "1L Btl",
+    "price_raw": "$14.95",
+    "price": 14.95
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin Strawberry Syrrup 750ML",
+    "product": "Monin Strawberry (Tempe)",
+    "code": "10022400",
+    "packaging": "750ML Btl",
+    "price_raw": "$6.49",
+    "price": 6.49
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Monin White Chocolate Sauce 64Oz",
+    "product": "Ghirardelli White Chocolate (Tempe)",
+    "code": "10099400",
+    "packaging": "64OZ Btl",
+    "price_raw": "$16.45",
+    "price": 16.45
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "P0065 Tea Zone Taro Powder 2.2",
+    "product": "Powder, Taro",
+    "code": "10097500",
+    "packaging": "Bag",
+    "price_raw": "$19.06",
+    "price": 19.06
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Rishi Chamomile Medley Foodser Sachets",
+    "product": "Chamomile Tea (Tempe)",
+    "code": "10133700",
+    "packaging": "Case/50EA",
+    "price_raw": "$24.23",
+    "price": 24.23
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Rishi earl Grey Foodser Sachets",
+    "product": "Earl Grey Tea (Tempe)",
+    "code": "10134400",
+    "packaging": "Case/50EA",
+    "price_raw": "$24.62",
+    "price": 24.62
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Rishi jade Cloud Green Fooodser Sachets",
+    "product": "Jade Tea (Tempe)",
+    "code": "10134800",
+    "packaging": "Box/50EA",
+    "price_raw": "$24.23",
+    "price": 24.23
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Rishi Masala Chai Foodser Sachets",
+    "product": "Chai Tea (Tempe)",
+    "code": "10134700",
+    "packaging": "Case/50EA",
+    "price_raw": "$24.23",
+    "price": 24.23
+  },
+  {
+    "category": "N/A Beverages",
+    "vendor_item": "Rishi Peppermint Food Serve Sachets",
+    "product": "Mint Tea (Tempe)",
+    "code": "10212500",
+    "packaging": "Case/50EA",
+    "price_raw": "$24.23",
+    "price": 24.23
+  },
+  {
+    "category": "Office Supplies",
+    "vendor_item": "Gs-tr313220 thermal paper rolls 3 1/8\" x 220'",
+    "product": "Gs-tr313220 thermal paper rolls 3 1/8\" x 220'",
+    "code": "10015000",
+    "packaging": "Case/50EA",
+    "price_raw": "$66.23",
+    "price": 66.23
+  },
+  {
+    "category": "To Go Supplies",
+    "vendor_item": "Bamboo Knot Picks-4.5\"",
+    "product": "Bamboo Knot Picks-4.5\"",
+    "code": "10062800",
+    "packaging": "Case/1000EA",
+    "price_raw": "$29.84",
+    "price": 29.84
+  },
+  {
+    "category": "To Go Supplies",
+    "vendor_item": "Bamboo Stir Sticks 8\"",
+    "product": "Bamboo Stir Sticks 8\"",
+    "code": "10201400",
+    "packaging": "Box/500EA",
+    "price_raw": "$4.07",
+    "price": 4.07
+  },
+  {
+    "category": "To Go Supplies",
+    "vendor_item": "BGSH106 6x6 Hinged Fiber BOX-Harvest",
+    "product": "BGSH106 6x6 Hinged Fiber BOX-Harvest",
+    "code": "10307000",
+    "packaging": "Case/500EA",
+    "price_raw": "$67.30",
+    "price": 67.3
+  },
+  {
+    "category": "To Go Supplies",
+    "vendor_item": "Fp-Imdc8-PP 8OZ PP Deli Soup Containers 240 sets/cs",
+    "product": "Fp-Imdc8-PP 8OZ PP Deli Soup Containers 240 sets/cs",
+    "code": "10208600",
+    "packaging": "Case240EA",
+    "price_raw": "$37.96",
+    "price": 37.96
+  },
+  {
+    "category": "To Go Supplies",
+    "vendor_item": "Fp- Imdcr - Pp 8Oz Pp Dell Soup Containers 240 Sets /Cs",
+    "product": "Fp- Imdcr - Pp 8Oz Pp Dell Soup Containers 240 Sets /Cs",
+    "code": "1028600",
+    "packaging": "Case/240/8OZ",
+    "price_raw": "$37.96",
+    "price": 37.96
+  },
+  {
+    "category": "To Go Supplies",
+    "vendor_item": "Fw-Wng1220 Film Wrap 12X2000",
+    "product": "Fw-Wng1220 Film Wrap 12X2000",
+    "code": "10043100",
+    "packaging": "Pack/2000EA",
+    "price_raw": "$14.54",
+    "price": 14.54
+  },
+  {
+    "category": "To Go Supplies",
+    "vendor_item": "Hwps6wk Heavy Weight Ps 6 Piece White Cutlery Kit",
+    "product": "Hwps6wk Heavy Weight Ps 6 Piece White Cutlery Kit",
+    "code": "10181300",
+    "packaging": "Case/250EA",
+    "price_raw": "$30.00",
+    "price": 30.0
+  },
+  {
+    "category": "To Go Supplies",
+    "vendor_item": "Karat 17x17 2PLy Napkins White 2000/cs",
+    "product": "Karat 17x17 2PLy Napkins White 2000/cs",
+    "code": "10103600",
+    "packaging": "Case/2000EA",
+    "price_raw": "$115.92",
+    "price": 115.92
+  },
+  {
+    "category": "To Go Supplies",
+    "vendor_item": "Kn-D1517-2K Karat 15X17 2Ply Dinner Napkins Krafts 3000/CS",
+    "product": "Kn-D1517-2K Karat 15X17 2Ply Dinner Napkins Krafts 3000/CS",
+    "code": "10103700",
+    "packaging": "Case/3000EA",
+    "price_raw": "$84.00",
+    "price": 84.0
+  },
+  {
+    "category": "To Go Supplies",
+    "vendor_item": "LR365815K Can Liners 36x58 1.5mil Black 100/cs Roll",
+    "product": "LR365815K Can Liners 36x58 1.5mil Black 100/cs Roll",
+    "code": "10050300",
+    "packaging": "Case/100EA",
+    "price_raw": "$41.20",
+    "price": 41.2
+  },
+  {
+    "category": "To Go Supplies",
+    "vendor_item": "White Pizza Box",
+    "product": "White Pizza Box - 10282900",
+    "code": "10282900",
+    "packaging": "Case/50EA",
+    "price_raw": "$24.66",
+    "price": 24.66
+  }
+]

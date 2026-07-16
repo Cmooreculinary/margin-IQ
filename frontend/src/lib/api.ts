@@ -195,6 +195,54 @@ export interface EngagementPlan {
   };
 }
 
+export interface SupplyComparisonRow {
+  _id: string;
+  line: number;
+  us_product_number: string;
+  us_description: string;
+  us_pack: string;
+  us_price: number | null;
+  us_price_unit: string | null;
+  us_compare_unit: string | null;
+  us_qty_in_unit: number | null;
+  us_dollar_per_unit: number | null;
+  shamrock_product_number: string;
+  shamrock_description: string;
+  shamrock_brand: string | null;
+  shamrock_pack: string;
+  shamrock_price: number | null;
+  shamrock_price_unit: string | null;
+  shamrock_compare_unit: string | null;
+  shamrock_qty_in_unit: number | null;
+  shamrock_dollar_per_unit: number | null;
+  diff_dollar_per_unit: number | null;
+  diff_pct: number | null;
+  cheaper_supplier: "US Foods" | "Shamrock" | "Tie" | "Need review";
+  match_confidence: string;
+  match_score: number;
+  notes: string | null;
+}
+
+export interface SupplyCatalogItem {
+  _id: string;
+  supplier: string;
+  category: string | null;
+  vendor_item: string;
+  product: string;
+  code: string | null;
+  packaging: string | null;
+  price_raw: string | null;
+  price: number | null;
+}
+
+export interface SupplySummary {
+  total_items: number;
+  trusted_comparisons: number;
+  needs_review: number;
+  by_cheaper_supplier: Record<string, number>;
+  illustrative_switching_savings: number;
+}
+
 // Demo periods match the seeded Snakes & Lattes dataset.
 export const DEMO_PERIOD = { period_start: "2026-04-01T00:00:00", period_end: "2026-06-30T00:00:00" };
 export const DEMO_POST_PERIOD = { post_period_start: "2026-10-01T00:00:00", post_period_end: "2026-12-31T00:00:00" };
@@ -286,6 +334,14 @@ export const api = {
     request<ValidationResult[]>(`/validation/runs${qs({ location_id: locationId })}`),
 
   engagementPlan: () => request<EngagementPlan>("/engagement/plan"),
+
+  supplyComparisons: (filters: Partial<{ cheaper_supplier: string; trusted_only: boolean }> = {}) =>
+    request<SupplyComparisonRow[]>(`/supply/comparisons${qs(filters)}`),
+
+  supplySummary: () => request<SupplySummary>("/supply/summary"),
+
+  supplyCatalog: (filters: Partial<{ supplier: string; category: string }> = {}) =>
+    request<SupplyCatalogItem[]>(`/supply/catalog${qs(filters)}`),
 
   // Google Drive
   driveStatus: () => request<{ connected: boolean }>("/drive/status"),
